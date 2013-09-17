@@ -1,0 +1,2 @@
+useDynLib("libCRI_5VOC")
+exportPattern(".*")
