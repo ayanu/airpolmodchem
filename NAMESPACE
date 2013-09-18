@@ -1,2 +1,2 @@
-useDynLib("libCRI_5VOC")
+useDynLib("AirPolModChem")
 exportPattern(".*")
