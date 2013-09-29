@@ -8,4 +8,4 @@ Maintainer: Stephan Henne <stephan.henne@empa.ch>
 Depends: R (>= 3.0.0), chron
 Description: A collection of useful functions and simple model tools as discussed during the ETH lecture Air Pollution Modeling and Chemistry in HS2013.  
 License: GPL (>=3) 
-Encoding: Cp1252
+Encoding: ISO-8859-1

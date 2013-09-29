@@ -1,11 +1,11 @@
-\name{TT_PP_2_PT}
-\alias{TT_PP_2_PT}
+\name{TT.PP.2.PT}
+\alias{TT.PP.2.PT}
 \title{calculate potential temperature}
 \description{
 calculate potential temperature (K) from ambient temperature (K or °C) and ambient pressure (hPa)
 }
 \usage{
-TT_PP_2_PT(tt, pp)
+TT.PP.2.PT(tt, pp)
 }
 \arguments{
   \item{tt}{ambient temperatuer (K >150, °C <150}
