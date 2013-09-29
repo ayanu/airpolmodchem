@@ -12,9 +12,7 @@ isa.pp.2.zz(pp = 101325)
 \arguments{
   \item{pp}{ (numeric) pressure level in [Pa] }
 }
-\details{
-    
-}
+
 \value{
     (numeric) altitude above sea level in [m]
 }

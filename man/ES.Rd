@@ -8,19 +8,19 @@
 ES(tt)
 }
 \arguments{
-  \item{tt}{temperature of water (interpreted as K if larger 150, otherwise °C}
+  \item{tt}{temperature of water (units interpreted as K if larger 150, otherwise °C. Do not mix units in same vector.)}
 }
 \details{
-    the formula 6.112 (hPa) *exp(17.62*tt / (243.12+tt)) is used if tt is in (K)
+    The formula 6.112 (hPa) *exp(17.62*tt / (243.12+tt)) is used if tt is in (K).
 }
 \value{
   the saturation vapor pressure in hPa
 }
 \author{Stephan Henne \email{stephan.henne@empa.ch}}
 
-\seealso{ \code{\link{ES.inv}}, \code{\link{ES.ice}}}
+\seealso{ \code{\link{E.2.TD}}, \code{\link{ES.ice}}}
 \examples{
-#   should yield the same results
+#   Saturation water vapor pressure at freezing point
     print(ES(273.15))   # assuming (K)
     print(ES(0))        # assuming (°C)
 }

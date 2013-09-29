@@ -2,22 +2,22 @@
 \alias{global.radiation}
 \title{Calculate potential global radiation}
 \description{
-\code{global.radiation} calculates the potential globl radiation at the earth's surface for a given location and time
+\code{global.radiation} calculates the potential globl radiation at the earth's surface for a given location and time.
 }
 \usage{
-global.radiation(tm, lng = 0, lat = 0)
+global.radiation(dtm, lon = 0, lat = 0)
 }
 \arguments{
-  \item{tm}{time/date object of class chron}
-  \item{lng}{longitude in decimal degrees, negative for west}
+  \item{dtm}{time/date object of class chron}
+  \item{lon}{longitude in decimal degrees, negative for west}
   \item{lat}{latitude in decimal degrees, negative for south}
 }
 \details{
 The function \code{global.radiation} calculates the potential global radiation at the earth's surface for a given loaction and time under clear sky conditions. 
-The sun declination is calculated using formula given by Madronich 1999. Average transmisivity of the atmosphere as given by Stull 1988.
+The sun declination is calculated using formula given by Madronich 1999. Average transmisivity of the atmosphere as given by Stull 1988. The effect of clouds is completely necglected.
 }
 \value{
-    global radiation (W/m\^2)
+    Global radiation (W/m2)
 }
 \references{Madronich, S., and S. Flocke (1999), The Role of Solar Radiation in Atmospheric Chemistry, in The Handbook of Environmental Chemistry Vol.2 Part L Environmental Photochemistry, edited by P. Boule, Springer, Berlin, Heidelberg, New York.
 Stull, R. B. (1988), An Introduction to Boundary Layer Meteorology, 666 pp., Kluwer Academic Publishers, Dordrecht.

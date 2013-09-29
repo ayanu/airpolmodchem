@@ -8,7 +8,7 @@
 ES.ice(tt)
 }
 \arguments{
-  \item{tt}{temperature of ice (interpreted as K if larger 150, otherwise °C}
+  \item{tt}{temperature of ice (units interpreted as K if larger 150, otherwise °C. Do not mix units in the same vector.)}
 }
 \details{
     the formula 6.112 (hPa) *exp(22.46*tt/(272.62+tt)) is used if tt is in (K)

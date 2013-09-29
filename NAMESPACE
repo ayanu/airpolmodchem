@@ -1,2 +1,5 @@
 useDynLib("AirPolModChem")
-exportPattern(".*")
+export(R.star, R.air, R.h2o, k.b, N.A, mu.air, mu.h2o)
+export(E.2.TD.ice, E.2.TD, ES, ES.ice)
+export(mc.2.vmr, vmr.2.nc, vmr.2.mc)
+export(isa.zz.2.tt, isa.zz.2.pp, isa.pp.2.zz)
