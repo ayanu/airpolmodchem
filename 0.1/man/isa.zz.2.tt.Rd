@@ -1,0 +1,23 @@
+\name{isa.zz.2.tt}
+\alias{isa.zz.2.tt}
+%- Also NEED an '\alias' for EACH other topic documented here.
+\title{ Altitude to pressure for international standard atmosphere }
+\description{
+    Estimates the temperature for a given altitude above sea level and international standard atmospheric conditions.
+}
+\usage{
+isa.zz.2.tt(zz = 0)
+}
+%- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{zz}{ (numeric) altitude above sea level in [m] }
+}
+
+\value{
+    (numeric) temperature [K]
+}
+\references{ Compare http://en.wikipedia.org/wiki/International\_Standard\_Atmosphere and Etling, D.: 1996. Theoretische Meteorologie. }
+\author{ stephan.henne@empa.ch }
+\seealso{ \code{\link{isa.pp.2.zz}}, \code{\link{isa.zz.2.pp}}}
+\keyword{ manip }
+

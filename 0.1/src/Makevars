@@ -1,0 +1,109 @@
+PKG_FCFLAGS = -cpp	#	will only work with gnu compiler
+
+GENSRC = CRI_5VOC_Precision.f90  \
+	 CRI_5VOC_Parameters.f90     \
+	 CRI_5VOC_Global.f90  
+
+GENOBJ = CRI_5VOC_Precision.o    \
+	 CRI_5VOC_Parameters.o       \
+	 CRI_5VOC_Global.o     
+
+FUNSRC = CRI_5VOC_Function.f90 
+FUNOBJ = CRI_5VOC_Function.o 
+
+JACSRC = CRI_5VOC_JacobianSP.f90  CRI_5VOC_Jacobian.f90
+JACOBJ = CRI_5VOC_JacobianSP.o    CRI_5VOC_Jacobian.o
+
+HESSRC = CRI_5VOC_HessianSP.f90   CRI_5VOC_Hessian.f90
+HESOBJ = CRI_5VOC_HessianSP.o     CRI_5VOC_Hessian.o
+
+STMSRC = CRI_5VOC_StoichiomSP.f90 CRI_5VOC_Stoichiom.f90 
+STMOBJ = CRI_5VOC_StoichiomSP.o   CRI_5VOC_Stoichiom.o
+
+UTLSRC = CRI_5VOC_Rates.f90 CRI_5VOC_Util.f90 CRI_5VOC_Monitor.f90 mcm_constants.f90
+UTLOBJ = CRI_5VOC_Rates.o   CRI_5VOC_Util.o   CRI_5VOC_Monitor.o mcm_constants.o
+
+LASRC  = CRI_5VOC_LinearAlgebra.f90 
+LAOBJ  = CRI_5VOC_LinearAlgebra.o   
+
+STOCHSRC = CRI_5VOC_Stochastic.f90 
+STOCHOBJ = CRI_5VOC_Stochastic.o 
+
+MAINSRC = CRI_5VOC_Main.f90   CRI_5VOC_Initialize.f90   CRI_5VOC_Integrator.f90 CRI_5VOC_Model.f90
+MAINOBJ = CRI_5VOC_Main.o     CRI_5VOC_Initialize.o     CRI_5VOC_Integrator.o   CRI_5VOC_Model.o 
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# User: modify the line below to include only the
+#       objects needed by your application
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ALLOBJ = $(GENOBJ) $(FUNOBJ) $(JACOBJ) $(HESOBJ) $(STMOBJ) \
+	 $(UTLOBJ) $(LAOBJ)
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# User: modify the line below to include only the
+#       executables needed by your application
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.PHONY: all 
+
+all: $(SHLIB)
+
+CRI_5VOC_Precision.o: CRI_5VOC_Precision.f90 	
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_Parameters.o: CRI_5VOC_Parameters.f90  CRI_5VOC_Precision.o
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_Monitor.o: CRI_5VOC_Monitor.f90  CRI_5VOC_Precision.o
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_Global.o: CRI_5VOC_Global.f90 CRI_5VOC_Parameters.o CRI_5VOC_Precision.o
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_Initialize.o: CRI_5VOC_Initialize.f90  $(GENOBJ) 
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+
+CRI_5VOC_Function.o: CRI_5VOC_Function.f90  $(GENOBJ) 
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+
+CRI_5VOC_Stochastic.o: CRI_5VOC_Stochastic.f90  $(GENOBJ) 
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_JacobianSP.o: CRI_5VOC_JacobianSP.f90 $(GENOBJ)
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_Jacobian.o: CRI_5VOC_Jacobian.f90  $(GENOBJ) CRI_5VOC_JacobianSP.o
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+
+CRI_5VOC_LinearAlgebra.o: CRI_5VOC_LinearAlgebra.f90 $(GENOBJ) CRI_5VOC_JacobianSP.o
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_Rates.o: CRI_5VOC_Rates.f90  $(GENOBJ) mcm_constants.o
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_HessianSP.o: CRI_5VOC_HessianSP.f90  $(GENOBJ)
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_Hessian.o:  CRI_5VOC_Hessian.f90 $(GENOBJ) CRI_5VOC_HessianSP.o
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_StoichiomSP.o: CRI_5VOC_StoichiomSP.f90 $(GENOBJ)
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_Stoichiom.o: CRI_5VOC_Stoichiom.f90  $(GENOBJ) CRI_5VOC_StoichiomSP.o
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_Util.o: CRI_5VOC_Util.f90  $(GENOBJ) CRI_5VOC_Monitor.o
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_Main.o: CRI_5VOC_Main.f90  $(ALLOBJ) CRI_5VOC_Initialize.o CRI_5VOC_Model.o CRI_5VOC_Integrator.o
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_Model.o: CRI_5VOC_Model.f90  $(ALLOBJ) CRI_5VOC_Integrator.o
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+CRI_5VOC_Integrator.o: CRI_5VOC_Integrator.f90  $(ALLOBJ)
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
+	
+mcm_constants.o: mcm_constants.f90  $(GENOBJ) 
+	$(FC) $(PKG_FCFLAGS) $(FCPICFLAGS) $(FCFLAGS) -c $< -o $@
