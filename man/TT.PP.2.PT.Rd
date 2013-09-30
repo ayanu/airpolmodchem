@@ -8,7 +8,7 @@ calculate potential temperature (K) from ambient temperature (K or °C) and ambie
 TT.PP.2.PT(tt, pp)
 }
 \arguments{
-  \item{tt}{ambient temperatuer (K >150, °C <150}
+  \item{tt}{ambient temperatuer (K >150, °C <150) }
   \item{pp}{ambient pressure (hPa)}
 }
 \details{

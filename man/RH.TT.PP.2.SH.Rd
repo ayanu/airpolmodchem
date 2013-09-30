@@ -2,7 +2,7 @@
 \alias{RH.TT.PP.2.SH}
 \title{Calculate specific humidity from relative humidity, ambient temperature, and pressure}
 \description{
-\code{RH.TT.PP.2.SH} calculates the specific humidity (g/kg) of an air parcel from its relative humidity (\%), temperature (K or °C) and pressure (hPa).
+\code{RH.TT.PP.2.SH} calculates the specific humidity (kg/kg) of an air parcel from its relative humidity (\%), temperature (K or °C) and pressure (hPa).
 }
 \usage{
 RH.TT.PP.2.SH(rh, tt, pp)
@@ -13,7 +13,7 @@ RH.TT.PP.2.SH(rh, tt, pp)
   \item{pp}{ambient pressure (hPa)}
 }
 \value{
-specific humidity of air parcel in g water per kg air (g/kg)
+specific humidity of air parcel in kg water per kg air (kg/kg)
 }
 \author{Stephan Henne \email{stephan.henne@empa.ch}}
 \examples{

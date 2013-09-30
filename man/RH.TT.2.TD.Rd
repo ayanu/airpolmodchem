@@ -2,7 +2,7 @@
 \alias{RH.TT.2.TD}
 \title{Calculate dew point temperature of an air parcel}
 \description{
-Calculate dew point temperature of an air parcel (°C) from the air parcel's relatve humidity (\%) and its ambient temperature (K or °C).
+Calculate dew point temperature of an air parcel (K) from the air parcel's relatve humidity (\%) and its ambient temperature (K or °C).
 }
 \usage{
 RH.TT.2.TD(rh, tt)
@@ -12,7 +12,7 @@ RH.TT.2.TD(rh, tt)
   \item{tt}{ambient temperature (K if >150, °C if <150)}
 }
 \value{
-dew point temperature (°C)
+dew point temperature (K)
 }
 \author{Stephan Henne}
 \examples{

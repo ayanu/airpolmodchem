@@ -1,8 +1,8 @@
 \name{E.2.TD.ice}
 \alias{E.2.TD.ice}
-\title{Calculate temperature of ice surface given a certain water vapor pressure}
+\title{Calculate dew point temperature for deposition (freezing) for a given water vapor pressure}
 \description{
-Calculates the temperature of an ice surface for a given water vapor pressure.
+Calculate dew point temperature for deposition (freezing) for a given water vapor pressure.
 }
 \usage{
 E.2.TD.ice(e)
@@ -11,10 +11,10 @@ E.2.TD.ice(e)
   \item{e}{water vapor pressure (hPa)}
 }
 \details{
-Calculates the temperature (K) of an ice surface for which at a given water vapor pressure (hPa) deposition would set in.
+Calculates the temperature (K) of an ice surface for which at a given water vapor pressure (hPa) freezing (deposition) would set in.
 }
 \value{
-    temperature of water surface (K)
+    deposition (freezing) point temperature (K)
 }
 \author{Stephan Henne \email{stephan.henne@empa.ch}}
 \seealso{\code{\link{ES.ice}}}

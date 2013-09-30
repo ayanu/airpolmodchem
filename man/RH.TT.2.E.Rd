@@ -2,7 +2,7 @@
 \alias{RH.TT.2.E}
 \title{Calculate water vapor partial pressure of an air parcel}
 \description{
-Calculate water vapor partial pressure an air parcel (hPa) from the air parcel's relatve humidity (\%) and its ambient temperature (K or °C).
+Calculate water vapor partial pressure of an air parcel given in  (hPa) from the air parcel's relatve humidity (\%) and its ambient temperature (K or °C).
 }
 \usage{
 RH.TT.2.E(rh, tt)

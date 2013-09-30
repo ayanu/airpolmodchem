@@ -1,8 +1,8 @@
 \name{E.2.TD}
 \alias{E.2.TD}
-\title{Calculate temperature of water surface for given a certain water vapor pressure}
+\title{Calculate dew point temperature for condensation for a given water vapor pressure}
 \description{
-Calculates the temperature of a water surface for a given water vapor pressure.
+Calculate dew point temperature for condensation for a given water vapor pressure.
 }
 \usage{
 E.2.TD(e)
@@ -11,10 +11,10 @@ E.2.TD(e)
   \item{e}{water vapor pressure (hPa)}
 }
 \details{
-Calculates the temperature (K) of an water surface for which at a given water vapor pressure (hPa) deposition would set in.
+Calculates the temperature (K) for which at a given water vapor pressure (hPa) condensation would set in.
 }
 \value{
-    temperature of water surface (K)
+    dew point temperature (K)
 }
 \author{Stephan Henne \email{stephan.henne@empa.ch}}
 \seealso{\code{\link{ES}}}

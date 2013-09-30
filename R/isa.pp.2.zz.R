@@ -1,14 +1,16 @@
-# pp in Pa
+# pp in hPa
 # returns zz in m
-isa.pp.2.zz = function(pp=101325){
+isa.pp.2.zz = function(pp=1013.25){
     #   constants
-    R0=287.1
-    g=9.80665
+    R0=R.air
+    g=g.0
     zz0 = 0 
     pp0 = c(101325, 22632, 5474.9, 868.02, 110.91, 66.939, 3.9564)
     gamma = c(-0.0065, 0, 0.001, 0.0028, 0, -0.0028, -0.002)
     tt0 =   c(288.15, 216.65, 216.65, 228.65, 270.65, 270.65, 214.65)
 
+	pp = pp * 100 	#	convert to hPa
+	
     idx = length(pp0) - as.numeric(cut(pp, breaks=pp0)) 
     zz = rep(zz0, length(pp))
    

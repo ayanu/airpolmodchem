@@ -6,15 +6,15 @@
     Estimates the altitude above sea level for a given pressure level and international standard atmospheric conditions.
 }
 \usage{
-isa.pp.2.zz(pp = 101325)
+isa.pp.2.zz(pp = 1013.25)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{pp}{ (numeric) pressure level in [Pa] }
+  \item{pp}{ (numeric) pressure level in (hPa) ! }
 }
 
 \value{
-    (numeric) altitude above sea level in [m]
+    (numeric) altitude above sea level in (m)
 }
 \references{ Compare http://en.wikipedia.org/wiki/International\_Standard\_Atmosphere and Etling, D.: 1996. Theoretische Meteorologie. }
 \author{ stephan.henne@empa.ch }

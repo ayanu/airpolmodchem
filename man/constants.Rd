@@ -8,6 +8,10 @@
 \alias{N.A}
 \alias{mu.air}
 \alias{mu.h2o}
+\alias{T.0}
+\alias{PP.0}
+\alias{F.0}
+\alias{g.0}
 
 \title{Physical constants}
 
@@ -23,6 +27,10 @@ k.b
 N.A
 mu.air
 mu.h2o
+T.0
+PP.0
+F.0
+g.0
 }
 
 \details{
@@ -36,7 +44,9 @@ N.A		\tab Avogardo number (number of atoms/molecules in one mole) \tab 1/mol \cr
 mu.air 	\tab Molecular weight of dry air \tab g/mol \cr
 mu.h2o	\tab Molecular weidht of water \tab g/mol \cr
 T.0		\tab Freezing point of water 	\tab K	\cr
+PP.0	\tab Standard ambient sea level pressure \tab hPa \cr
 F.0		\tab Solar constant 	\tab W/m2 \cr
+g.0		\tab Average gravity of Earth 	\tab m/s2 \cr
 }
 }
 

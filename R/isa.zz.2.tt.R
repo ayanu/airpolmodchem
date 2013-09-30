@@ -2,8 +2,8 @@
 # returns tt in K
 isa.zz.2.tt = function(zz=0){
     #   constants
-    R0=287.1
-    g=9.80665
+    R0=R.air
+    g=g.0
     pp0 = 101325
     level = c(0, 11000, 20000, 32000, 47000, 51000, 71000)
     gamma = c(-0.0065, 0, 0.001, 0.0028, 0, -0.0028, -0.002)

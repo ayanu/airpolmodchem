@@ -10,12 +10,12 @@ isa.zz.2.pp(zz = 0)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{zz}{ (numeric) altitude above sea level in [m] }
+  \item{zz}{ (numeric) altitude above sea level in (m) }
 }
 
 
 \value{
-    (numeric) pressure in [hPa]
+    (numeric) pressure in (hPa)  
 }
 \references{ Compare http://en.wikipedia.org/wiki/International\_Standard\_Atmosphere and Etling, D.: 1996. Theoretische Meteorologie. }
 \author{ stephan.henne@empa.ch }
