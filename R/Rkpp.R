@@ -1,6 +1,13 @@
-get.MCM.photolysis.rates = function(lat, lon, dtm) {
-	#	parameterisation taken from MCM3.1
 
+#	dtm 	(chron)		single time 
+#	lat		(numeric)	latitude in degrees north
+#	lon		(numeric) 	longitude in degrees east
+get.MCM.photolysis.rates = function(dtm, lat=0, lon=0) {
+
+	if (length(dtm)>1) stop("dtm has to be of length 1")
+	lat = lat / 180 * pi ;
+	lon = lon / 180 * pi ;
+	
 	jday = as.numeric(format(as.POSIXlt(dtm, "GMT"), "%j"))/365. * 2 * pi
 	
 	#
@@ -10,13 +17,12 @@ get.MCM.photolysis.rates = function(lat, lon, dtm) {
 	dec = 0.006918 - 0.399912 * cos(jday) + 0.070257 * sin(jday) - 0.006758 * cos(2*jday) + 
 		0.000907 * sin(2*jday) - 0.002697 * cos(3*jday) + 0.001480 * sin(3*jday) 
 
-	lat = lat / 180 * pi ;
-	lon = lon / 180 * pi ;
 	costime = cos(pi*as.numeric(dtm)*2 + lon + eqt)	
+	#	cosine of solar elevation angle 
 	cosx = sin(lat)*sin(dec) - cos(lat)*cos(dec) * costime
-
 	secx = 1/cosx
-
+	
+	#	parameterisation taken from MCM3.1
 	J = numeric(61)
 
 	J[1] = 6.073E-05*(cosx^(1.743))*exp(-0.474*secx) 
@@ -56,6 +62,7 @@ get.MCM.photolysis.rates = function(lat, lon, dtm) {
 	J[61] = 7.537E-04*(cosx^(0.499))*exp(-0.266*secx) 
 
 	J[!is.finite(J)] = 1E-30
+	
 	return(J)
 }
 

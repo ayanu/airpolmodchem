@@ -49,14 +49,14 @@ solar.azimuth.angle = function(tm, lng=0, lat=0){
 
     th = solar.hour(tm=tm, lng=lng)
 
-    delta = a[1] + a[2]*cos(thetan) + a[3]*sin(thetan) + a[4]*cos(2*thetan) + 
+    dec = a[1] + a[2]*cos(thetan) + a[3]*sin(thetan) + a[4]*cos(2*thetan) + 
 			a[5]*sin(2*thetan) + a[6]*cos(3*thetan) + a[7]*sin(3*thetan)
 
 	#	solar elevation angle
-	se = asin(sin(delta)*sin(pi*lat/180) + cos(delta)*cos(pi*lat/180)*cos(th))
-
+	se = asin(sin(pi*lat/180)*sin(dec) + cos(pi*lat/180)*cos(dec)*cos(th))
+	
 	#	solar azimuth
-	sa = acos( (sin(delta) - sin(se)*sin(lat/180*pi))/(cos(se)*cos(lat/180*pi)) )
+	sa = acos( (sin(dec) - sin(se)*sin(lat/180*pi))/(cos(se)*cos(lat/180*pi)) )
 	msk = sin(th)>0
 	sa[msk] = 2*pi - sa[msk]
 	
