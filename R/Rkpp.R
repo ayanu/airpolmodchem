@@ -2,7 +2,7 @@
 #	dtm 	(chron)		single time 
 #	lat		(numeric)	latitude in degrees north
 #	lon		(numeric) 	longitude in degrees east
-get.MCM.photolysis.rates = function(dtm, lat=0, lon=0) {
+get.MCM.photolysis.rates = function(dtm, lon=0, lat=0) {
 
 	if (length(dtm)>1) stop("dtm has to be of length 1")
 	lat = lat / 180 * pi ;
@@ -17,9 +17,9 @@ get.MCM.photolysis.rates = function(dtm, lat=0, lon=0) {
 	dec = 0.006918 - 0.399912 * cos(jday) + 0.070257 * sin(jday) - 0.006758 * cos(2*jday) + 
 		0.000907 * sin(2*jday) - 0.002697 * cos(3*jday) + 0.001480 * sin(3*jday) 
 
-	costime = cos(pi*as.numeric(dtm)*2 + lon + eqt)	
-	#	cosine of solar elevation angle 
-	cosx = sin(lat)*sin(dec) - cos(lat)*cos(dec) * costime
+	costime = cos(2*pi*as.numeric(dtm) + lon + eqt)	
+	#	cosine of solar zenith angle 
+	cosx = sin(lat) * sin(dec) - cos(lat) * cos(dec) * costime
 	secx = 1/cosx
 	
 	#	parameterisation taken from MCM3.1
@@ -168,6 +168,7 @@ init.KPP = function(init.var=NULL, var.default=0, dt, tt=270, init.gl = NULL){
 		tmp = .Fortran("R_SetAllGlobals", as.double(gl.vals))
 	}
 
+	return(vals)
 }
 
 update.deposition = function(spec, conc, vd=NULL, dt=1, dz=100){
@@ -198,7 +199,7 @@ update.emissions = function(spec, E=NULL, mu=NULL, dt=1, V=1, dtm=chron(0), hour
 		for (ii in names(E)){
 			idx = which(spec==ii)
 			if (length(idx)==1){
-				dconc[idx] = E[[ii]]*1E3/mu[[ii]] * n.A /(V*1E6) * dt
+				dconc[idx] = E[[ii]]*1E3/mu[[ii]] * N.A /(V*1E6) * dt
 			}
 		}
 	}
@@ -217,10 +218,13 @@ update.KPP.concentrations = function(conc, dconc){
 	if (!missing(dconc)){
 		tmp = conc+dconc
 		tmp[tmp<0.] = 0.
-		.Fortran("R_SetAllConc", as.double(tmp))
+		
 	} else {
-		.Fortran("R_SetAllConc", as.double(conc))
+		tmp = conc
 	}
+	
+	.Fortran("R_SetAllConc", as.double(tmp))
+	
 	return(tmp)
 }
 

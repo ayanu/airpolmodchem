@@ -9,4 +9,7 @@ export(TT.PP.2.PT, TT.TD.2.RH, TT.SH.2.TV, TT.TD.PP.2.TV)
 export(SH.PP.2.E)
 export(isothermal.pressure.gradient, polytropic.pressure.gradient)
 export(solar.hour, solar.zenith.angle, solar.elevation.angle)
-export(get.MCM.photolysis.rates)
+export(get.MCM.photolysis.rates, get.KPP.species, get.KPP.globals, 
+	set.KPP.globals, init.KPP, update.deposition, update.emissions, 
+	update.KPP.concentrations)
+export(plot.time.series, axis.chron)
