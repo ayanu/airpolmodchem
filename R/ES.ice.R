@@ -1,3 +1,4 @@
+#' @export 
 "ES.ice" <-
 function (tt){
 	if (any(!is.na(tt)) && any(tt>150, na.rm=TRUE)) tt = tt - T.0

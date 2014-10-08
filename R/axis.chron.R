@@ -1,3 +1,4 @@
+#' @export
 "axis.chron" <-
 function (side, x, at, format, labels, tz= "GMT", lwd=par("lwd"), lwd.ticks=par("lwd"), ...) 
 {

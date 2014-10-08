@@ -1,3 +1,4 @@
+#' @export 
 "global.radiation" <-
 function(dtm=0, lon=0, lat=0){
     library(chron)

@@ -1,3 +1,4 @@
+#'@ export
 "E.2.TD" <-
 function(e){
     d = log(e/6.112)

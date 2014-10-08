@@ -1,15 +1,4 @@
-useDynLib("AirPolModChem")
-export(R.star, R.air, R.h2o, k.b, N.A, mu.air, mu.h2o, T.0, PP.0, F.0, g.0, 
-	c.p, c.v)
-export(E.2.TD.ice, E.2.TD, ES, ES.ice)
-export(mc.2.vmr, vmr.2.nc, vmr.2.mc, nc.2.vmr)
-export(isa.zz.2.tt, isa.zz.2.pp, isa.pp.2.zz)
-export(RH.TT.2.E, RH.TT.2.TD, RH.TT.PP.2.SH)
-export(TT.PP.2.PT, TT.TD.2.RH, TT.SH.2.TV, TT.TD.PP.2.TV)
-export(SH.PP.2.E)
-export(isothermal.pressure.gradient, polytropic.pressure.gradient)
-export(solar.hour, solar.zenith.angle, solar.elevation.angle)
-export(get.MCM.photolysis.rates, get.KPP.species, get.KPP.globals, 
-	set.KPP.globals, init.KPP, update.deposition, update.emissions, 
-	update.KPP.concentrations)
-export(plot.time.series, axis.chron)
+S3method(plot,skew.T)
+export(chron.2.string)
+export(create.sounding.url)
+export(get.sounding)
