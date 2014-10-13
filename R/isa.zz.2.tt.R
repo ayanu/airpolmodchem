@@ -1,5 +1,6 @@
 # zz in m
 # returns tt in K
+#' @export 
 isa.zz.2.tt = function(zz=0){
     #   constants
     R0=R.air

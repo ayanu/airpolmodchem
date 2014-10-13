@@ -1,5 +1,6 @@
 # pp in hPa
 # returns zz in m
+#' @export
 isa.pp.2.zz = function(pp=1013.25){
     #   constants
     R0=R.air

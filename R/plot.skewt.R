@@ -148,7 +148,7 @@ plot.skewT.ax = function(ax=None, xlim=c(-40,40), ylim=c(105000.,10000.), dp=100
 #' @author stephan.henne@@empa.ch
 #' 
 #' @export
-plot.skew.T = function (snd, T.surf, qv.surf, plot.cape=TRUE, plot.LCL=TRUE, ...){
+skewT.plot = function (snd, T.surf, qv.surf, plot.cape=TRUE, plot.LCL=TRUE, ...){
 #		'''
 #		# This script plots a Skew-T ln(P) diagram. 
 #		# 

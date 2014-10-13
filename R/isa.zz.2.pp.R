@@ -1,5 +1,6 @@
 # zz in m
 # returns pp in Pa
+#' @export 
 isa.zz.2.pp = function(zz=0){
     #   constants
     R0=R.air

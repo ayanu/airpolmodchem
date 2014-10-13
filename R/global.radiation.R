@@ -3,7 +3,7 @@
 function(dtm=0, lon=0, lat=0){
     library(chron)
 
-    sinphi = sin(solar.zenith.angle(dtm, lon, lat))
+    sinphi = sin(solar.elevation.angle(dtm, lon, lat))
     
     globrad = rep(0, length(dtm))
     msk = which(sinphi>0)

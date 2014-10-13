@@ -1,3 +1,4 @@
+#' @export 
 vmr.2.mc = function(vmr, molw, species="CO", TT=20, pp=1013.25){
     if (missing(molw)){
         molw = c(28.0101, 16.0425, 47.998, 46.0055, 30.0061, 44.0128)  #   g per mol

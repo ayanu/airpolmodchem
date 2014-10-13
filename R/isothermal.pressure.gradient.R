@@ -1,3 +1,4 @@
+#' @export 
 isothermal.pressure.gradient = function(z, p0=1013.25, TT=288.15){
 	
 	#   assume that if temperature smaller 100 is given in °C

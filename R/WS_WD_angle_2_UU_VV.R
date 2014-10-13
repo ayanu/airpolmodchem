@@ -1,3 +1,4 @@
+#' @export 
 "WS_WD_angle_2_UU_VV" <-
 function(ws, wd, angle){
     wd = wd - angle + 180

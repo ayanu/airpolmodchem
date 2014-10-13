@@ -1,0 +1,25 @@
+\name{create.sounding.url}
+\alias{create.sounding.url}
+\title{Creates a URL to retrieve radiosonde data}
+\usage{
+create.sounding.url(dtm, stnm)
+}
+\arguments{
+  \item{dtm}{(chron) time and date of sounding}
+
+  \item{stnm}{(character) station numver of sounding
+  station. Payerne (CH): 06610}
+}
+\value{
+URL to individual sounding
+}
+\description{
+Builds a URL to a specific radiosonde dataset as stored at
+the University of Wyoming radiosonde archive. Soundings are
+usually done twice daily at 00 and 12 UTC. For availalbe
+station numbers goto http://weather.uwyo.edu.
+}
+\author{
+stephan.henne@empa.ch
+}
+

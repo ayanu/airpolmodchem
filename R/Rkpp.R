@@ -1,7 +1,7 @@
-
 #	dtm 	(chron)		single time 
 #	lat		(numeric)	latitude in degrees north
 #	lon		(numeric) 	longitude in degrees east
+#' @export 
 get.MCM.photolysis.rates = function(dtm, lon=0, lat=0) {
 
 	if (length(dtm)>1) stop("dtm has to be of length 1")
@@ -65,7 +65,7 @@ get.MCM.photolysis.rates = function(dtm, lon=0, lat=0) {
 	
 	return(J)
 }
-
+#' @export 
 get.KPP.species = function(){
 	
 	nn.spec = .Fortran("R_GetNumSpec", numspec=integer(1))$numspec
@@ -79,7 +79,7 @@ get.KPP.species = function(){
 
 	return(spec.names)
 }
-
+#' @export 
 get.KPP.globals = function(){
 	tmp = .Fortran("R_GetNumGlobals", R_nusrgl=integer(1), R_nusrnames=integer(1))
 	nn.usrgl = tmp$R_nusrgl
@@ -99,7 +99,7 @@ get.KPP.globals = function(){
 
 	return(data.frame(name=global.names, length=global.length, start=start, stringsAsFactors=FALSE))
 }
-
+#' @export 
 set.KPP.globals = function(vals.gl, tt){
 	globals = get.KPP.globals()
 	nn.gl.names = nrow(globals)
@@ -133,6 +133,7 @@ set.KPP.globals = function(vals.gl, tt){
 #	tt 			(numeric) 	temperature in K
 #
 #	init.gl		(list) initial values of user defined globals
+#' @export 
 init.KPP = function(init.var=NULL, var.default=0, dt, tt=270, init.gl = NULL){
 
 	#	species
@@ -170,7 +171,7 @@ init.KPP = function(init.var=NULL, var.default=0, dt, tt=270, init.gl = NULL){
 
 	return(vals)
 }
-
+#' @export 
 update.deposition = function(spec, conc, vd=NULL, dt=1, dz=100){
 	nn.spec = length(spec)
 
@@ -190,7 +191,8 @@ update.deposition = function(spec, conc, vd=NULL, dt=1, dz=100){
 #	E (list) emissions by name, units: kg/s
 #	mu (list) molar mass by name, units: g/mole
 #	dt	(numeric) time step, units: s
-#	V	(numeric)	volume of box, units: m3 
+#	V	(numeric)	volume of box, units: m3
+#' @export 
 update.emissions = function(spec, E=NULL, mu=NULL, dt=1, V=1, dtm=chron(0), hour.profile=NULL){
 	nn.spec = length(spec)
 
@@ -211,7 +213,7 @@ update.emissions = function(spec, E=NULL, mu=NULL, dt=1, V=1, dtm=chron(0), hour
 
 	return(dconc)
 }
-
+#' @export 
 update.KPP.concentrations = function(conc, dconc){
 	nn.spec = length(conc)
 	

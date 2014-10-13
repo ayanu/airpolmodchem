@@ -1,4 +1,4 @@
-
+#' @export 
 nc.2.vmr = function(nc, TT=20, pp=1013.25){
 	#   assume that if temperature smaller 100 is given in °C
 	TT[TT<150] = TT[TT<150] + 273.15

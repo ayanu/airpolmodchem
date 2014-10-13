@@ -1,3 +1,4 @@
+#' @export 
 "UU_VV_2_WS_WD" <-
 function(uu, vv){
     wd = atan(uu/vv)*180/pi

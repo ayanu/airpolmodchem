@@ -1,8 +1,9 @@
+#' @export 
 solar.zenith.angle = function(tm=0, lon=0, lat=0){
 	return(pi/2. - solar.elevation.angle(tm=tm, lon=lon, lat=lat))
 }
 
-
+#' @export 
 solar.hour = function(tm, lon=0){
     b = c(0.000075, 0.001868, -0.032077, -0.014615, -0.040849)
 
@@ -16,7 +17,7 @@ solar.hour = function(tm, lon=0){
 	return(th)
 }
 
-
+#' @export 
 solar.elevation.angle <- function(tm=0, lon=0, lat=0){
 #    calculation of sun declination angle following Madronich1999a
     a = c(0.006918, -0.399912, 0.070257, -0.006758, 0.000907, -0.002697, 0.001480)
@@ -36,7 +37,7 @@ solar.elevation.angle <- function(tm=0, lon=0, lat=0){
     return(asin(sin(delta)*sin(pi*lat/180) + cos(delta)*cos(pi*lat/180)*cos(th)))
 }
 
-             
+#' @export 
 solar.azimuth.angle = function(tm, lon=0, lat=0){
     a = c(0.006918, -0.399912, 0.070257, -0.006758, 0.000907, -0.002697, 0.001480)
     b = c(0.000075, 0.001868, -0.032077, -0.014615, -0.040849)

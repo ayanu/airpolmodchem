@@ -23,7 +23,7 @@ get.sounding = function(fn){
 	close(con)
 		
 	
-	print(lines[grepl("Convective Available", lines)])
+#	print(lines[grepl("Convective Available", lines)])
 	
 	#	header line 
 	hdr = which(grepl("<PRE>", lines))[1]+2

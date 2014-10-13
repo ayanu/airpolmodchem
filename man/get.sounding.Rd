@@ -1,0 +1,22 @@
+\name{get.sounding}
+\alias{get.sounding}
+\title{Reads radiosonde data}
+\usage{
+get.sounding(fn)
+}
+\arguments{
+  \item{fn}{(character) Either the filename or the URL of
+  the sounding ASCII file.}
+}
+\value{
+data.frame with sounding data
+}
+\description{
+The sounding data needs to be in the ASCII format as
+obtained from University of Wyoming radiosonde archive.
+Only one sounding per file is supported.
+}
+\author{
+stephan.henne@empa.ch
+}
+

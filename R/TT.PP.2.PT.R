@@ -1,3 +1,4 @@
+#' @export 
 "TT.PP.2.PT" <-
 function (tt, pp){
     if (any(!is.na(tt)) && any(tt<150)) tt = tt+273.15

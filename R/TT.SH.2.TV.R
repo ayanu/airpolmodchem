@@ -3,6 +3,7 @@
 #	pp:	ambient pressure in hPa
 #
 #	returns tv in K
+#' @export 
 TT.SH.2.TV = function(tt, sh, pp=1013.25){
 	if (missing(tt)) stop("need temperature tt")
 	if (missing(sh)) stop("need specific humidity sh")

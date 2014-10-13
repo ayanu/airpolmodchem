@@ -2,6 +2,7 @@
 # cc in micro gram / m^3
 # pp in hPa
 # TT in °C
+#' @export 
 mc.2.vmr = function(cc, molw, species="CO", TT=20, pp=1013.25){
 
     if (missing(molw)){

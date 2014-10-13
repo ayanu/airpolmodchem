@@ -1,6 +1,5 @@
 #' @export
-"axis.chron" <-
-function (side, x, at, format, labels, tz= "GMT", lwd=par("lwd"), lwd.ticks=par("lwd"), ...) 
+axis.chron <- function (side, x, at, format, labels, tz= "GMT", lwd=par("lwd"), lwd.ticks=par("lwd"), ...) 
 {
     library(chron)
     mat <- missing(at)

@@ -1,3 +1,4 @@
+#' @export 
 "WS_WD_2_UU_VV" <-
 function(ws, wd){
     wd = wd/180.*pi

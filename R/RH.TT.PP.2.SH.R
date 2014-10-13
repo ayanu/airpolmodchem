@@ -1,3 +1,4 @@
+#' @export 
 "RH.TT.PP.2.SH" <-
 function(rh, tt, pp){
     esat = ES(tt)
