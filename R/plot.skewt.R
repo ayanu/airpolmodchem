@@ -3,7 +3,7 @@
 # Author: hes
 ###############################################################################
 
-
+#' @export
 dewpt = function(r,p){
 #		"""Returns dewpoint temperature (Celcius) for given mixing ratio (kg/kg)
 #		and pressure (hectopascal)"""
@@ -14,7 +14,7 @@ dewpt = function(r,p){
 	return(243.5/(17.67/(log((r*p/(r+eps))/6.112))-1))
 }
 
-
+#' @export
 gamma_s = function(T,p){
 #		"""Calculates moist adiabatic lapse rate for T (Celsius) and p (Pa)
 #		Note: We calculate dT/dp, not dT/dz
@@ -54,7 +54,7 @@ skewnessTerm = function (P,P_bot){
 	return(skewness * log(P_bot/P))
 }
 
-
+#' @export
 plot.skewT.ax = function(ax=None, xlim=c(-40,40), ylim=c(105000.,10000.), dp=100, main=""){
 		
 	#	from matplotlib.ticker import FormatStrFormatter,MultipleLocator
@@ -224,7 +224,6 @@ skewT.plot = function (snd, T.surf, qv.surf, plot.cape=TRUE, plot.LCL=TRUE, ...)
 	dryTd = dewpt(qv.surf*0.001, splevs*0.01)
 	dryT = (T_zero+T.surf) * (splevs/pnew[1])^kappa - T_zero # was: pnew[sbi] 
 
-
 	
 	if (plot.LCL || plot.cape) {
 		# calculate the index number of the LCL
@@ -241,8 +240,12 @@ skewT.plot = function (snd, T.surf, qv.surf, plot.cape=TRUE, plot.LCL=TRUE, ...)
 		# calculate the trajectories arrays
 		plotTd = dryTd[1:(lcli-1)]
 		plotp = splevs[1:(lcli-1)]
-		trajT = c(dryT[1:(lcli-1)], moistT)
-	
+		if (lcli==1){
+			trajT = moistT
+		} else {
+			trajT = c(dryT[1:(lcli-1)], moistT)
+		}
+
 		# plot LCL
 		lcl = splevs[lcli]
 	}
@@ -270,7 +273,7 @@ skewT.plot = function (snd, T.surf, qv.surf, plot.cape=TRUE, plot.LCL=TRUE, ...)
 	#	calculate and plot CAPE
 	if (plot.cape){
 		#calculate cape
-		interpT = approx(pnew,T, splevs, rule=3)$y
+		interpT = approx(pnew, T, splevs, rule=3)$y
 		Tdiff = Rs/splevs[lcli:length(splevs)] * 
 			(trajT[lcli:length(splevs)]-interpT[lcli:length(splevs)])
 		

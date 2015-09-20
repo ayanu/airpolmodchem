@@ -1,3 +1,4 @@
+#' @useDynLib AirPolModChem
 #' @export 
 R.star = 8.314462			# 	J/mol/K
 #' @export 

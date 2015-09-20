@@ -96,15 +96,23 @@ r.soil = function(H.star=1E-2, f.0=1, r.soil.O3=150, r.soil.SO2=150){
 	
 }
 
-
+#' Calculate dry depostion volocity
+#' 
+#' Calculates the dry depostion velocity of a gas following the parameterisation of Wesely.
+#' 
+#' @param u.star Friction velocity in the surface layer (m/s)
+#' @param zz Reference height for which to calculate dry deposition velocity (m)
+#' @param z.0 Roughness length (m)
+#' @param GR Global radiation (W/m2)
 #' @references Wesely, M. L., 1989: Parameterization of surface resistances to gaseous dry deposition in regional-scale numerical models. Atmospheric Environment (1967), 23, 1293-1304.
 #' @return dry deposition velocity in m/s
 #' @export 
-dry.deposition.velocity = function(u.star, zz, z.0, GR, TT.s, lu=2, season=1, spec="O3", H.star,
-		f.0, Dv.by.Dq){
+dry.deposition.velocity = function(u.star, zz, z.0, GR, TT.s, lu=2, season=1, 
+	spec=c("O3", "SO2", "NO2", "NO", "HNO3", "H2O2", "HONO"), H.star, f.0, Dv.by.Dq){
 	
+	spec = match.arg(spec)
 	H.star.q = list(SO2=1E5, O3=1E-2, NO2=1E-2, NO=1E-3, HNO3=1E14, H2O2=1E5, HONO=1E5)
-	f.0.q = list(SO2=0, O3=1, NO2=.1, NO=0, HNO3=0, H2O2=1, HONO=0.1)
+	f.0.q =    list(SO2=0, O3=1, NO2=.1, NO=0, HNO3=0, H2O2=1, HONO=0.1)
 	Dv.by.Dq.q = list(SO2=1.9, O3=1.6, NO2=1.6, NO=1.3, HNO3=1.9, H2O2=1.4, HONO=1.6)
 	
 	#	load parameters
