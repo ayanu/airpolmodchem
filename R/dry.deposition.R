@@ -98,12 +98,27 @@ r.soil = function(H.star=1E-2, f.0=1, r.soil.O3=150, r.soil.SO2=150){
 
 #' Calculate dry depostion volocity
 #' 
-#' Calculates the dry depostion velocity of a gas following the parameterisation of Wesely.
+#' Calculates the dry depostion velocity of a gas following the parameterisation of Wesely. On 
+#' input meteorological condtions, land cover type and season need to be provided.
 #' 
 #' @param u.star Friction velocity in the surface layer (m/s)
 #' @param zz Reference height for which to calculate dry deposition velocity (m)
 #' @param z.0 Roughness length (m)
 #' @param GR Global radiation (W/m2)
+#' @param TT.s 	Surface temperature in (°C) 
+#' @param lu	Landuse/landcover class used by Wesely. 1) Urban land; 2) agricultural land; 3) range land;
+#' 			4) deciduous forest; 5) coniferous forest; 6) mixed forest; 7) water, both salt and fresh; 
+#' 			8) barren land, mostly desert; 9) nonforested wetland; 10) mixed agricultural and range land;
+#' 			11) rocky open areas with low growing shrubs
+#' @param season Integer 1 to 5 describing different seasons: 1) midsummer with lush vegetation; 
+#' 		2) autum with unharvested cropland; 3) late autum afer frost, no snow; 
+#' 		4) winter, snow on ground and subfreezing; 5) transitional spring with partially green short annuals   
+#' @param spec	Species for which deposition velocity should be calculated. One of O3, SO2, NO2, NO, HNO3 H2O2, HONO.
+#' @param H.star Effective Henry's law constant	(mol/l bar-1). 	If not given standard value by species is given.
+#' @param f.0 	Reactivity factor (unitless; range 0-1). If not given standard value by species is given.
+#' @param Dv.by.Dq	Ratio of the diffusion coefficient of water vapor to that of gas q. If not given standard value by species is given. 
+#'
+#' 
 #' @references Wesely, M. L., 1989: Parameterization of surface resistances to gaseous dry deposition in regional-scale numerical models. Atmospheric Environment (1967), 23, 1293-1304.
 #' @return dry deposition velocity in m/s
 #' @export 
