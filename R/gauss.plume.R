@@ -185,12 +185,17 @@ gauss.plume.2D = function(u=1, v=1, WS, WD, x, y, z, Q, h.e, stability, h.m){
 #' 				is not contained in the data.frame, it is assumed to be 1 for all conditions.
 #' @param Q emission flux of the source. Given in kg/s.
 #' @param h.e effective emission height. Given in m above ground. 
+#' @param C.ex Threshold concentration given in units ug/m3. If given an additional field counting 
+#' 			the number of situations that exceed the given threshold is reported.
 #'
 #' @return Average concentrations for the area defined by xrng and yrng, given as a list with 
-#' 			elements xrng, yrng, and zz (containing the concentrations).
+#' 			elements xrng, yrng, and zz (containing the concentrations in units ug/m3). If
+#' 			'C.ex' was given and additional field 'nn.ex' will be returned giving the 
+#' 			number of threshold exceedances per year.
 #' 
 #' @export  
-average.gauss.plume.from.freq = function(xrng=c(-5000,5000), yrng=c(-5000,5000), dx=50, dy=50, freq, Q, h.e){
+average.gauss.plume.from.freq = function(xrng=c(-5000,5000), yrng=c(-5000,5000), dx=50, dy=50, 
+		freq, Q, h.e, C.ex=NULL){
 	
 	x = seq(xrng[1], xrng[2], dx)
 	y = seq(yrng[1], yrng[2], dy)
@@ -205,59 +210,85 @@ average.gauss.plume.from.freq = function(xrng=c(-5000,5000), yrng=c(-5000,5000),
 	if (is.null(freq$freq)) freq$freq=1
 	
 	C.s = array(0, dim=c(nx,ny,nn))
+	if (!is.null(C.ex)){
+		nn.ex = array(0, dim=c(nx,ny))
+	}
 	C.mean = array(0, dim=c(nx,ny))
 	C.max = 0
 	for (ii in 1:nn){
 	
-		C.s[,,ii] = gauss.plume.2D(WS=freq$WS[ii], WD=freq$WD[ii], x=xx, y=yy, z=z, Q=Q, h.e=h.e, stability=freq$stability[ii], h.m=freq$h.m[ii])
+		C.s[,,ii] = 1E9 * gauss.plume.2D(WS=freq$WS[ii], WD=freq$WD[ii], x=xx, y=yy, z=z, Q=Q, h.e=h.e, stability=freq$stability[ii], h.m=freq$h.m[ii])
 		
 		#	add to weighted mean 
 		C.mean = C.mean + C.s[,,ii]*freq$freq[ii]
 		C.max = max(c(C.max, C.s[,,ii]), na.rm=TRUE)
+		if (!is.null(C.ex)){
+			msk = which(C.s[,,ii]>C.ex)
+			if (length(msk)>0){
+				nn.ex[msk] = nn.ex[msk] + freq$freq[ii]
+			}
+		}
 #		if (ii %% 100 == 0){
-#			fill.grid(C.mean/sum(freq$freq[1:ii]), rotate=FALSE)			
+#			filled.contour(C.mean/sum(freq$freq[1:ii]))			
 #		}
 		
 	}
 	#	finally calculate weighted mean
 	C.mean = C.mean/sum(freq$freq)
 	
-	C.mean = C.mean * 1E9    #   convert units to ug/m3
-	C.max = C.max * 1E9
 	C.mean = list(xrng=x, yrng=y, zz=C.mean, C.max=C.max)
-	
+	if (!is.null(C.ex)){
+		C.mean$nn.ex = nn.ex
+	}
 	return(invisible(C.mean))
 }
 
-require(AirPolModChem)
-require(RColorBrewer)
+#require(AirPolModChem)
+#require(RColorBrewer)
 #xrng = c(-5000, 5000)
 #yrng = c(-5000, 5000)
 #dx = 50
 #dy = 50 
 #Q = 7.5E-3 # kg/s
 #h.e = 50	# m above ground
+#C.ex = 200 # ug/m3
 #
 #data(reh.ts)
-#C.s = average.gauss.plume.from.freq(xrng=xrng, yrng=yrng, dx=dy, dy=dy, freq=reh.ts, Q=Q, h.e=h.e)
+#C.s = average.gauss.plume.from.freq(xrng=xrng, yrng=yrng, dx=dy, dy=dy, freq=reh.ts, Q=Q, h.e=h.e, C.ex=C.ex)
 #
 #png("H:/lectures/Air pollution modelling and chemistry/gauss_model/average.concentration.full.ts.png",
-#	height=12, width=16, res=300, units="cm", pointsize=12)
+#	height=8, width=12, res=300, units="cm", pointsize=10)
 #par(mar=c(4,4,1,1)+.1)
 #filled.contour(C.s, xlab="Easting (m)", ylab="Northing (m)", col=brewer.pal(9, "YlOrBr"), 
 #		levels=seq(0,18,2), key.title="C (ug/m3)")
 #mtext(paste("Max y:", signif(max(C.s$zz, na.rm=TRUE), 4), "(ug/m3)"), 3, -1.5, adj=0.)
 #mtext(paste("Max h:", signif(C.s$C.max, 4), "(ug/m3)"), 3, -2.5, adj=0.)
 #dev.off()
-
-data(reh.freq)
-C.s = average.gauss.plume.from.freq(xrng=xrng, yrng=yrng, dx=dy, dy=dy, freq=reh.freq, Q=Q, h.e=h.e)
-
-png("H:/lectures/Air pollution modelling and chemistry/gauss_model/average.concentration.red.ts.png",
-		height=12, width=16, res=300, units="cm", pointsize=12)
-par(mar=c(4,4,1,1)+.1)
-filled.contour(C.s, xlab="Easting (m)", ylab="Northing (m)", col=brewer.pal(9, "YlOrBr"), 
-		levels=seq(0,18,2), key.title="C (ug/m3)")
-mtext(paste("Max y:", signif(max(C.s$zz, na.rm=TRUE), 4), "(ug/m3)"), 3, -1.5, adj=0.)
-mtext(paste("Max h:", signif(C.s$C.max, 4), "(ug/m3)"), 3, -2.5, adj=0.)
-dev.off()
+#
+#
+#png("H:/lectures/Air pollution modelling and chemistry/gauss_model/number.of.exceedances.full.ts.png",
+#		height=8, width=12, res=300, units="cm", pointsize=10)
+#par(mar=c(4,4,1,1)+.1)
+#filled.contour(x=C.s$x, y=C.s$y, z=C.s$nn.ex, xlab="Easting (m)", ylab="Northing (m)", col=brewer.pal(9, "PuRd"), 
+#		levels=seq(0,225, 25), key.title="N")
+#dev.off()
+#
+#
+#data(reh.freq)
+#C.s = average.gauss.plume.from.freq(xrng=xrng, yrng=yrng, dx=dy, dy=dy, freq=reh.freq, Q=Q, h.e=h.e, C.ex=C.ex)
+#
+#png("H:/lectures/Air pollution modelling and chemistry/gauss_model/average.concentration.red.ts.png",
+#		height=8, width=12, res=300, units="cm", pointsize=10)
+#par(mar=c(4,4,1,1)+.1)
+#filled.contour(C.s, xlab="Easting (m)", ylab="Northing (m)", col=brewer.pal(9, "YlOrBr"), 
+#		levels=seq(0,18,2), key.title="C (ug/m3)")
+#mtext(paste("Max y:", signif(max(C.s$zz, na.rm=TRUE), 4), "(ug/m3)"), 3, -1.5, adj=0.)
+#mtext(paste("Max h:", signif(C.s$C.max, 4), "(ug/m3)"), 3, -2.5, adj=0.)
+#dev.off()
+#
+#png("H:/lectures/Air pollution modelling and chemistry/gauss_model/number.of.exceedances.red.ts.png",
+#		height=8, width=12, res=300, units="cm", pointsize=10)
+#par(mar=c(4,4,1,1)+.1)
+#filled.contour(x=C.s$x, y=C.s$y, z=C.s$nn.ex, xlab="Easting (m)", ylab="Northing (m)", col=brewer.pal(9, "PuRd"), 
+#		levels=seq(0,225, 25), key.title="N")
+#dev.off()
