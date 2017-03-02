@@ -62,6 +62,42 @@ get.MCM.photolysis.rates = function(dtm, lon=0, lat=0) {
 	J[61] = 7.537E-04*(cosx^(0.499))*exp(-0.266*secx) 
 
 	J[!is.finite(J)] = 1E-30
+	names(J) = c("O3 -> O(1d) + O2", 	#1
+				"O3 -> O(3p) + O", 
+				"H2O2 -> OH + OH", 
+				"NO2 -> NO + O(3p)", 
+				"NO3 -> NO + O2",		#5
+				"NO3 -> NO2 + O(3p)", 
+				"HONO -> NO + OH", 
+				"HNO3 -> NO2 + OH",
+                "",					
+				"", 					# 10 
+				"HCHO -> H + HCO", 
+				"HCHO -> H2 + CO",
+				"CH3CHO -> CH3 + HCO",
+				"C2H5CHO -> C2H5 + HCO",
+				"C3H7CHO -> n-C3H7 + HCO", 	#15
+				"C3H7CHO -> C2H4 + CH3CHO",
+				"IPRCHO -> n-C4H9 + HCO",
+				"MACR -> CH2=CCH3 + HCO",
+				"MACR -> CH2=C(CH3)CO + H",
+				"C5HPALD1 -> CH3C(CHO)=CHCH2O + OH",		# 20
+				"CH3COCH3 -> CH3CO + CH3",
+				"MEK -> CH3CO + C2H5",
+				"MVK -> CH3CH=CH2 + CO",
+				"MVK -> CH3CO + CH2=CH",
+				"",							# 25
+				"",
+				"",
+				"",
+				"",
+				"",							# 30
+				"GLYOX -> CO + CO + H2", 		
+				"GLYOX -> HCHO + CO", 
+				"GLYOX -> HCO + HCO", 		
+				"MGLYOX -> CH3CO + HCO",
+				"BIACET -> CH3CO + CH3CO"	# 35
+				)
 	
 	return(J)
 }

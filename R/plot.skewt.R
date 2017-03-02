@@ -89,7 +89,7 @@ plot.skewT.ax = function(ax=None, xlim=c(-40,40), ylim=c(105000.,10000.), dp=100
 	axis(2, at=y.at, labels=rep("", length(y.at)), tck=1, col="gray", )
 	
 	box()
-	title(ylab="Pressure (hPa)", xlab="Temperature (°C)")
+	title(ylab="Pressure (hPa)", xlab="Temperature (C)")
 	mtext("Mixing ratio (g/kg)", 1, 2, col="green")
 	title(main=main)
 
@@ -148,7 +148,9 @@ plot.skewT.ax = function(ax=None, xlim=c(-40,40), ylim=c(105000.,10000.), dp=100
 #' @author stephan.henne@@empa.ch
 #' 
 #' @export
-skewT.plot = function (snd, T.surf, qv.surf, plot.cape=TRUE, plot.LCL=TRUE, ...){
+skewT.plot = function (snd, T.surf, qv.surf, plot=TRUE, plot.cape=TRUE, plot.LCL=TRUE,
+	dp = 100., ...){
+
 #		'''
 #		# This script plots a Skew-T ln(P) diagram. 
 #		# 
@@ -179,7 +181,9 @@ skewT.plot = function (snd, T.surf, qv.surf, plot.cape=TRUE, plot.LCL=TRUE, ...)
 	Rs = cp-cv
 
 	#	
-	plot.skewT.ax(...)
+	if (plot){
+		plot.skewT.ax(...)
+	}
 	
 	if (missing(T.surf)){
 		T.surf = T[1]
@@ -189,52 +193,35 @@ skewT.plot = function (snd, T.surf, qv.surf, plot.cape=TRUE, plot.LCL=TRUE, ...)
 		qv.surf = qv[1]
 	}
 	
-	pnew = 100*P
+	pnew = rev(range(P))*100
 	Td = dewpt(qv*0.001,P)
 
-	Tmin = par("usr")[1]
-	Tmax = par("usr")[2]	
-	P_b = par("usr")[3]
-	P_t = par("usr")[4]
+	if (plot){
+		Tmin = par("usr")[1]
+		Tmax = par("usr")[2]	
+		P_b = par("usr")[3]
+		P_t = par("usr")[4]
+	}
 	
-	sbi = 1
-
-#################################################### plot parcel trajectories
-# surface pressure levels instead of pressure levels
-
-# calculate the dry trajectories for Temp and Td
-#mixedlayer_r = sum(rnew[:4])/len(rnew[:4])
-#mixedlayer_temp = sum(Tempnew[:4])/len(Tempnew[:4])
-#mixedlayer_pres = sum(Presnew[:4])/len(Presnew[:4])
-
-
-# use mixed layer values
-#dryTd = dewpt(mixedlayer_r,0.01*splevs)
-#dryT = (T_zero+mixedlayer_temp) * (splevs/mixedlayer_pres)**kappa - T_zero
-
-
-#+splevs = np.arange(pres,P_t-1,-dp)
-#use surface values
-#dryTd = dewpt(rv2m,0.01*splevs)
 
 	# calulate trajectory
-	dp = 100.
-	splevs = seq(pnew[1],pnew[length(pnew)]-1,-dp)
+	splevs = seq(pnew[1], pnew[2]-1, -dp)
+	nn.lev = length(splevs)
 	
 	dryTd = dewpt(qv.surf*0.001, splevs*0.01)
-	dryT = (T_zero+T.surf) * (splevs/pnew[1])^kappa - T_zero # was: pnew[sbi] 
+	dryT = (T_zero+T.surf) * (splevs/splevs[1])^kappa - T_zero # was: pnew[sbi] 
 
 	
 	if (plot.LCL || plot.cape) {
 		# calculate the index number of the LCL
 		TminTd = abs(dryT-dryTd)
 		lcli = which.min(TminTd)
+		if (lcli==1) lcli=2		#	to avoid problems in the following loop
 	
-		moistT = numeric()
-		temp = dryT[lcli]
-		for (ps in splevs[lcli:length(splevs)]){
-			temp = temp - dp*gamma_s(temp,ps)
-			moistT = c(moistT, temp)
+		#	calculate moist adiabate starting at LCL
+		trajT = c(dryT[1:(lcli-1)], rep(NA,nn.lev-lcli+1))
+		for (ii in lcli:nn.lev){
+			trajT[ii] = trajT[ii-1] - dp*gamma_s(trajT[ii-1],splevs[ii])
 		}
 	
 		# calculate the trajectories arrays
@@ -251,7 +238,9 @@ skewT.plot = function (snd, T.surf, qv.surf, plot.cape=TRUE, plot.LCL=TRUE, ...)
 	}
 	
 	#	
-	if (plot.LCL) {      
+	if (plot.LCL && plot) {      
+		plotTd = dryTd[1:(lcli-1)]
+		plotp = splevs[1:(lcli-1)]
 		# plot the trajectories
 		lines(plotTd + skewnessTerm(plotp, P_bot), plotp, col = 'purple', lty=1, 
 				lwd = 2*par("lwd"))
@@ -281,38 +270,49 @@ skewT.plot = function (snd, T.surf, qv.surf, plot.cape=TRUE, plot.LCL=TRUE, ...)
 		if (length(msk)>0){
 			cape = sum(Tdiff[msk], na.rm=TRUE)*dp
 			
-			polygon(c(trajT[lcli+msk-1]+skewnessTerm(splevs[lcli+msk-1],P_bot), 
-				rev(interpT[lcli+msk-1]+ skewnessTerm(splevs[lcli+msk-1],P_bot))), 
-				c(splevs[lcli+msk-1], rev(splevs[lcli+msk-1])), col="#f8eb5088", border=NA)
+			if (plot){	
+				polygon(c(trajT[lcli+msk-1]+skewnessTerm(splevs[lcli+msk-1],P_bot), 
+					rev(interpT[lcli+msk-1]+ skewnessTerm(splevs[lcli+msk-1],P_bot))), 
+					c(splevs[lcli+msk-1], rev(splevs[lcli+msk-1])), col="#f8eb5088", border=NA)
+			}
 		} else {
 			cape = 0 
 		}
-		cat("CAPE:", cape, "(J/kg)\n")
-		mtext(paste("CAPE:", round(cape), "(J/kg)"), 3, -2, cex=1.2, adj=c(0.05), font=2, col="gold")
+		if (plot){
+			mtext(paste("CAPE:", round(cape), "(J/kg)"), 3, -2, cex=1.2, adj=c(0.05), font=2, 
+				col="gold")
+		}
 	}
 	
 	
 	
 	
 	# plot the actual graph
-	lines(T + skewnessTerm(pnew,P_bot), pnew, col= 'red', lty=1, lwd= 2*par("lwd"))
-	lines(Td + skewnessTerm(pnew,P_bot), pnew, col= 'blue', lty=1, lwd= 2*par("lwd"))
+	if (plot){
+		lines(T + skewnessTerm(pnew,P_bot), pnew, col= 'red', lty=1, lwd= 2*par("lwd"))
+		lines(Td + skewnessTerm(pnew,P_bot), pnew, col= 'blue', lty=1, lwd= 2*par("lwd"))
+	}
 
-
-	return(invisible(NULL))
+	res = list(lcl=lcl)
+	if (plot.cape) res$cape = cape
+	return(res)
 }
 
-#require(AirPolModChem)
+##require(AirPolModChem)
 #dtm=chron("2014-08-01", "12:00:00", format=c("y-m-d", "h:m:s"))
 #stnm = "06610"	#	Payerne
-#out.dir = "H:\\lectures\\Air pollution modelling and chemistry\\R_generated_plots"
-#
+##out.dir = "H:\\lectures\\Air pollution modelling and chemistry\\R_generated_plots"
+##
 #url = create.sounding.url(dtm, stnm=stnm)
 #snd = get.sounding(url)
+##
+##png(file.path(out.dir, paste("Payerne_", chron.2.string(dtm, "%Y%m%d%H"), "_cape.png", sep="")), 
+##	height=14, width=12, units="cm", res=600, pointsize=11)
+##par(mar=c(4,4,2,1)+.1)
+#start.time = Sys.time()
+#res = skewT.plot(snd, plot.LCL=TRUE, plot.cape=TRUE, main=paste("Payerne", chron.2.string(dtm, "%Y-%m-%d %H GMT")), plot=FALSE) #, T.surf=24, qv.surf=25)
+#end.time = Sys.time()
+#cat("Calculation took", end.time-start.time, " (s) \n")
 #
-#png(file.path(out.dir, paste("Payerne_", chron.2.string(dtm, "%Y%m%d%H"), "_cape.png", sep="")), 
-#	height=14, width=12, units="cm", res=600, pointsize=11)
-#par(mar=c(4,4,2,1)+.1)
-#plot.skew.T(snd, plot.LCL=TRUE, plot.cape=TRUE, main=paste("Payerne", 
-#	chron.2.string(dtm, "%Y-%m-%d %H GMT"))) #, T.surf=24, qv.surf=12)
-#dev.off()
+#print(res)
+##dev.off()
