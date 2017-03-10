@@ -10,6 +10,6 @@ Depends:
     chron
 Description: A collection of useful functions and simple model tools as
     discussed during the ETH lecture Air Pollution Modeling and Chemistry in
-    HS2014.
+    HS2016.
 License: GPL (>=3)
 Encoding: ISO-8859-1

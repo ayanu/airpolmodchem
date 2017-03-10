@@ -1,5 +1,5 @@
 #' @export 
-time.series.plot = function(X, para=names(X)[2], xlim, ylim=NULL, xlab, ylab=para, 
+ts.plot = function(X, para=names(X)[2], xlim, ylim=NULL, xlab, ylab=para, 
 	pch, lty, col, leg.pos="topleft", stacked=0, accumulated=FALSE, legend, 
 	dtm.col="dtm", flag=NULL, bg.flag=NULL, col.par, color.palette = blue.red.colors, 
 	scale = NULL,

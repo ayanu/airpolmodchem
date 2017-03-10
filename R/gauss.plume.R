@@ -96,7 +96,7 @@ gauss.plume = function(x, y, z, Q, h.e, u, stability="D", h.m=NULL){
 				
 				if (ii == 0){
 					h.plus = h.e
-					h.minus = -h.e
+					h.minus = h.e
 				} else if (ii>0) {
 					h.plus = h.e - 2*ii*h.m
 					h.minus = -h.e - 2*ii*h.m
@@ -106,17 +106,28 @@ gauss.plume = function(x, y, z, Q, h.e, u, stability="D", h.m=NULL){
 				}
 				
 #            cat("ii:", ii, "h.plus:", h.plus, "h.minus:", h.minus, "\n")
-				C.z = C.z + exp(-(z-h.plus)^2/(2*sigma.z^2)) + a * exp(-(z+h.minus)^2/(2*sigma.z^2))
-				
+				C.m = exp(-(z-h.plus)^2/(2*sigma.z^2)) 
+				C.s = a * exp(-(z+h.minus)^2/(2*sigma.z^2))
+				C.z = C.z + C.m + C.s
+#				if (ii==(-3)){
+#					plot(C.s,z, xlim=c(-1,1))
+#					lines(C.m, z, col=abs(ii)+1, lty=2)
+#					abline(h=0)
+#				} else {
+#					lines(C.s,z, col=abs(ii)+1)
+#					lines(C.m, z, col=abs(ii)+1, lty=2)
+#				}
 			}
-			
-			
+								
 			C = C * C.z
 			C[z>h.m] = 0
 		}
 	}
+	
 	C[x<0] = 0
 	C[is.na(C)] = 0
+	
+	
 	return(C)
 }
 
@@ -163,8 +174,7 @@ gauss.plume.2D = function(u=1, v=1, WS, WD, x, y, z, Q, h.e, stability, h.m){
 	#   call gauss.plume
 	C = array(0, dim=dim(x))
 	C[msk] = gauss.plume(x=x.rot[msk], y=y.rot[msk], z=z.rot[msk], u=WS, Q=Q, h.e=h.e, stability=stability, h.m=h.m)
-	
-	
+		
 	return(C)
 }
 
@@ -244,6 +254,19 @@ average.gauss.plume.from.freq = function(xrng=c(-5000,5000), yrng=c(-5000,5000),
 }
 
 #require(AirPolModChem)
+#
+#x = rep(3000, 11)
+#y = rep(0,11)
+#z = seq(0,200, 20)
+#Q = 7.5E-3 # kg/s
+#h.e = 50	# m above ground
+#h.m = 60
+#u = 1
+#
+#C  = gauss.plume(x=x, y=y, z=z, Q=Q, h.e=h.e, h.m=h.m, stability="E", u=u)
+#plot(C, z)
+#print(C[1])
+
 #require(RColorBrewer)
 #xrng = c(-5000, 5000)
 #yrng = c(-5000, 5000)
