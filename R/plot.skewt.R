@@ -193,7 +193,8 @@ skewT.plot = function (snd, T.surf, qv.surf, plot=TRUE, plot.cape=TRUE, plot.LCL
 		qv.surf = qv[1]
 	}
 	
-	pnew = rev(range(P))*100
+	pnew = 100*P
+	prng = rev(range(P))*100
 	Td = dewpt(qv*0.001,P)
 
 	if (plot){
@@ -205,7 +206,7 @@ skewT.plot = function (snd, T.surf, qv.surf, plot=TRUE, plot.cape=TRUE, plot.LCL
 	
 
 	# calulate trajectory
-	splevs = seq(pnew[1], pnew[2]-1, -dp)
+	splevs = seq(prng[1], prng[2]-1, -dp)
 	nn.lev = length(splevs)
 	
 	dryTd = dewpt(qv.surf*0.001, splevs*0.01)
@@ -225,12 +226,10 @@ skewT.plot = function (snd, T.surf, qv.surf, plot=TRUE, plot.cape=TRUE, plot.LCL
 		}
 	
 		# calculate the trajectories arrays
-		plotTd = dryTd[1:(lcli-1)]
+		plotTd = dryTd[1:(lcli-1)]	
 		plotp = splevs[1:(lcli-1)]
-		if (lcli==1){
-			trajT = moistT
-		} else {
-			trajT = c(dryT[1:(lcli-1)], moistT)
+		if (lcli!=1){
+		#trajT = c(dryT[1:(lcli-1)], trajT)
 		}
 
 		# plot LCL
