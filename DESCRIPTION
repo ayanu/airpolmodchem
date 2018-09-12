@@ -13,3 +13,4 @@ Description: A collection of useful functions and simple model tools as
     HS2016.
 License: GPL (>=3)
 Encoding: ISO-8859-1
+RoxygenNote: 6.0.1

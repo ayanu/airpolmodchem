@@ -5,7 +5,9 @@
 
 #	vertical standard deviations depending on distance to source and Pasquill stability class
 #	internal function
-get.sigma.z = function(x, stability="D"){
+get.sigma.z = function(x, stability=c("D", "A", "B", "C", "E", "F")){
+	stability = match.arg(stability)
+
 	switch(stability,
 			# extremely unstable
 			"A" = {
@@ -38,7 +40,9 @@ get.sigma.z = function(x, stability="D"){
 
 #	horizontal standard deviations depending on distance to source and Pasquill stability class
 #	internal function
-get.sigma.y = function(x, stability="D"){
+get.sigma.y = function(x, stability=c("D", "A", "B", "C", "E", "F")){
+	stability = match.arg(stability)
+
 	a = switch(stability,
 			"A" = 0.22,
 			"B" = 0.16,
@@ -67,7 +71,13 @@ get.sigma.y = function(x, stability="D"){
 #' @param Q emission flux of the source. Given in kg/s.
 #' @param h.e effective emission height. Given in m above ground. 
 #' @param u wind speed in main wind direction (x) given in m/s.
-#' @param stability Stability class following Pasquill definition.
+#' @param stability Stability class following Pasquill definition. Possible values:
+#'				A: extremely unstable
+#'				B: moderately unstable
+#'				C: slightly unstable
+#'				D: neutral
+#'				E: slightly stable
+#'				F: stable
 #' @param h.m Boundary layer height given in m above ground. If missing or NA no boundary layer top is assumed.  
 #' 
 #' @return Concentration resulting from source strength Q, given in kg/m3
@@ -83,12 +93,21 @@ gauss.plume = function(x, y, z, Q, h.e, u, stability="D", h.m=NULL){
 	}
 	
 	#   make sure x,y,z have same dimensions
+
+	#	check if reflection at boundary layer top is required
 	if (is.null(h.m)){
-		C = Q/(2*pi*u*sigma.y*sigma.z)* exp(-y^2/(2*sigma.y^2)) * ( exp(-(z-h.e)^2/(2*sigma.z^2)) + a * exp(-(z+h.e)^2/(2*sigma.z^2)) )
+		#	no boundary layer top given -> no reflection considered
+		C = Q/(2*pi*u*sigma.y*sigma.z)* exp(-y^2/(2*sigma.y^2)) * 
+			( exp(-(z-h.e)^2/(2*sigma.z^2)) + a * exp(-(z+h.e)^2/(2*sigma.z^2)) )
 	} else {
+		#	boundary layer top given
+
+		#	check if release height higher than boundary layer top
 		if (h.e > h.m){
+			#	no concentration anywhere in the boundary layer
 			C = array(0, dim=dim(x))
 		} else {
+			#	consider multiple reflection on boundary layer top and surface
 			C = Q/(2*pi*u*sigma.y*sigma.z)* exp(-y^2/(2*sigma.y^2))
 			C.z = 0
 			
@@ -105,18 +124,9 @@ gauss.plume = function(x, y, z, Q, h.e, u, stability="D", h.m=NULL){
 					h.minus = h.e - 2*ii*h.m
 				}
 				
-#            cat("ii:", ii, "h.plus:", h.plus, "h.minus:", h.minus, "\n")
 				C.m = exp(-(z-h.plus)^2/(2*sigma.z^2)) 
 				C.s = a * exp(-(z+h.minus)^2/(2*sigma.z^2))
 				C.z = C.z + C.m + C.s
-#				if (ii==(-3)){
-#					plot(C.s,z, xlim=c(-1,1))
-#					lines(C.m, z, col=abs(ii)+1, lty=2)
-#					abline(h=0)
-#				} else {
-#					lines(C.s,z, col=abs(ii)+1)
-#					lines(C.m, z, col=abs(ii)+1, lty=2)
-#				}
 			}
 								
 			C = C * C.z
@@ -124,9 +134,9 @@ gauss.plume = function(x, y, z, Q, h.e, u, stability="D", h.m=NULL){
 		}
 	}
 	
+	#	make sure no negative or NA values get returned
 	C[x<0] = 0
 	C[is.na(C)] = 0
-	
 	
 	return(C)
 }
@@ -141,15 +151,26 @@ gauss.plume = function(x, y, z, Q, h.e, u, stability="D", h.m=NULL){
 #' @param u wind speed in x direction given in m/s.
 #' @param v wind speed in x direction given in m/s.
 #' @param WS scalar wind speed given in m/s.
-#' @param WD wind direction given in degree. 0: wind from north, 90: wind from east, 180: wind from south, 270: wind from west.
-#' @param x	Location in x direction for which to calculate the Gauss plume concentration, given in m from source. 
-#' 			Note that x,y,z can be arrays, but they should be of the same shape.
-#' @param y Location in y direction for which to calculate the Gauss plume concentration, given in m from source.
-#' @param z Location in z direction for which to calculate the Gauss plume concentration, given in m above ground.
+#' @param WD wind direction given in degree. 0: wind from north, 90: wind from east, 
+#'				180: wind from south, 270: wind from west.
+#' @param x	Location in x direction for which to calculate the Gauss plume concentration, 
+#'				given in m from source. 
+#' 				Note that x,y,z can be arrays, but they should be of the same shape.
+#' @param y Location in y direction for which to calculate the Gauss plume concentration, 
+#'				given in m from source.
+#' @param z Location in z direction for which to calculate the Gauss plume concentration, 
+#'				given in m above ground.
 #' @param Q emission flux of the source. Given in kg/s.
 #' @param h.e effective emission height. Given in m above ground. 
-#' @param stability Stability class following Pasquill definition.
-#' @param h.m Boundary layer height given in m above ground. If missing or NA no boundary layer top is assumed.  
+#' @param stability Stability class following Pasquill definition. Possible values:
+#'				A: extremely unstable
+#'				B: moderately unstable
+#'				C: slightly unstable
+#'				D: neutral
+#'				E: slightly stable
+#'				F: stable
+#' @param h.m Boundary layer height given in m above ground. If missing or NA no boundary 
+#'				layer top is assumed.  
 #' 
 #' @return Concentration resulting from source strength Q, given in kg/m3
 #' 
@@ -173,7 +194,8 @@ gauss.plume.2D = function(u=1, v=1, WS, WD, x, y, z, Q, h.e, stability, h.m){
 	msk = which(x.rot>0)
 	#   call gauss.plume
 	C = array(0, dim=dim(x))
-	C[msk] = gauss.plume(x=x.rot[msk], y=y.rot[msk], z=z.rot[msk], u=WS, Q=Q, h.e=h.e, stability=stability, h.m=h.m)
+	C[msk] = gauss.plume(x=x.rot[msk], y=y.rot[msk], z=z.rot[msk], u=WS, Q=Q, h.e=h.e, 
+		stability=stability, h.m=h.m)
 		
 	return(C)
 }
