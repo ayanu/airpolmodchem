@@ -2,7 +2,7 @@ Package: AirPolModChem
 Type: Package
 Title: Functions for ETH Lecture Air Pollution Modeling and Chemistry
 Version: 0.5
-Date: 2015-10-09
+Date: 2018-09-12
 Author: Stephan Henne <stephan.henne@empa.ch>
 Maintainer: Stephan Henne <stephan.henne@empa.ch>
 Depends:
@@ -10,7 +10,7 @@ Depends:
     chron
 Description: A collection of useful functions and simple model tools as
     discussed during the ETH lecture Air Pollution Modeling and Chemistry in
-    HS2016.
+    HS2018.
 License: GPL (>=3)
 Encoding: ISO-8859-1
 RoxygenNote: 6.0.1
