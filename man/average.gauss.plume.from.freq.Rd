@@ -4,8 +4,16 @@
 \alias{average.gauss.plume.from.freq}
 \title{Gauss plume statistics}
 \usage{
-average.gauss.plume.from.freq(xrng = c(-5000, 5000), yrng = c(-5000, 5000),
-  dx = 50, dy = 50, freq, Q, h.e, C.ex = NULL)
+average.gauss.plume.from.freq(
+  xrng = c(-5000, 5000),
+  yrng = c(-5000, 5000),
+  dx = 50,
+  dy = 50,
+  freq,
+  Q,
+  h.e,
+  C.ex = NULL
+)
 }
 \arguments{
 \item{xrng}{Range of grid in x direction, given in m. Needs to be a two element vector.}

@@ -133,9 +133,9 @@ plot.skewT.ax = function(ax=None, xlim=c(-40,40), ylim=c(105000.,10000.), dp=100
 #' Available Potential Energy (CAPE).
 #' 
 #' @param snd (data.frame) should contain at least the columns 'PRES' for atmospheric pressure in 
-#' 				hPa, 'TEMP' for atmospheric temperature in °C, and 'MIXR' for the water vapour 
+#' 				hPa, 'TEMP' for atmospheric temperature in degree C, and 'MIXR' for the water vapour 
 #' 				mixing ratio in g/kg.
-#' @param T.surf	optional surface temperature (°C) used for LCL and CAPE calculation
+#' @param T.surf	optional surface temperature (degree C) used for LCL and CAPE calculation
 #' @param pv.surf	optional water vapor mixing ratio at the surface (g/kg) used for LCL and CAPE
 #' 					calculation
 #' @param plot.LCL	(logical) if TRUE lifting condensation level is calculated and displayed

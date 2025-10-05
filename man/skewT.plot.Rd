@@ -4,15 +4,23 @@
 \alias{skewT.plot}
 \title{Draw a Skew-T diagram}
 \usage{
-skewT.plot(snd, T.surf, qv.surf, plot = TRUE, plot.cape = TRUE,
-  plot.LCL = TRUE, dp = 100, ...)
+skewT.plot(
+  snd,
+  T.surf,
+  qv.surf,
+  plot = TRUE,
+  plot.cape = TRUE,
+  plot.LCL = TRUE,
+  dp = 100,
+  ...
+)
 }
 \arguments{
 \item{snd}{(data.frame) should contain at least the columns 'PRES' for atmospheric pressure in 
-hPa, 'TEMP' for atmospheric temperature in °C, and 'MIXR' for the water vapour 
+hPa, 'TEMP' for atmospheric temperature in degree C, and 'MIXR' for the water vapour 
 mixing ratio in g/kg.}
 
-\item{T.surf}{optional surface temperature (°C) used for LCL and CAPE calculation}
+\item{T.surf}{optional surface temperature (degree C) used for LCL and CAPE calculation}
 
 \item{plot.cape}{(logical) if TRUE CAPE is calculated and displayed}
 

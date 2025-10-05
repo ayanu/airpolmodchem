@@ -17,7 +17,7 @@ polytropic.pressure.gradient(z, p0 = 1013.25, T0 = 288.15, gamma = g.0/c.p)
 Pressure at bottom of layer 
 }
   \item{T0}{
-Temperature at bottom of layer in K or °C
+Temperature at bottom of layer in K or degree C
 }
   \item{gamma}{
 %%     ~~Describe \code{gamma} here~~

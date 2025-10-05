@@ -19,9 +19,9 @@ r.a  = function(z, z.0, u.star){
 #	resistance to molecular diffusion 
 r.b = function(u.star=0.5){
 	D = 0.000015 	#  molecular diffusivity of O3 in air in m^2/s from Emberson, 2000, Environmental Pollution
-	nu = 1.48E-5	#	kinematic viscosity of air at 20°C
+	nu = 1.48E-5	#	kinematic viscosity of air at 20 degree C
 	Sc = nu/D		#	Schmidt number
-	Pr = 0.713		#	Prandtl number: air at 20°C http://www.engineeringtoolbox.com/air-properties-d_156.html
+	Pr = 0.713		#	Prandtl number: air at 20 degree C http://www.engineeringtoolbox.com/air-properties-d_156.html
 	z0.m.by.z0.g = 100
 	
 	r.b = log(z0.m.by.z0.g)*(Sc/Pr)^(2/3)/(0.4 * u.star)		#	equation 20.14	Jacobson
@@ -30,7 +30,7 @@ r.b = function(u.star=0.5){
 }
 
 #	GR 		incoming global radiation (W/m2)
-#	TT.s	surface temperatuer (°C)
+#	TT.s	surface temperature (degree C)
 #	R.min	minimal resistance for water vapor (depence on landuse)
 #	Dv.by.Dq	ratio of the diffusion coefficient of water vapor to that of gas q
 
@@ -105,7 +105,7 @@ r.soil = function(H.star=1E-2, f.0=1, r.soil.O3=150, r.soil.SO2=150){
 #' @param zz Reference height for which to calculate dry deposition velocity (m)
 #' @param z.0 Roughness length (m)
 #' @param GR Global radiation (W/m2)
-#' @param TT.s 	Surface temperature in (°C) 
+#' @param TT.s 	Surface temperature in (degree C) 
 #' @param lu	Landuse/landcover class used by Wesely. 1) Urban land; 2) agricultural land; 3) range land;
 #' 			4) deciduous forest; 5) coniferous forest; 6) mixed forest; 7) water, both salt and fresh; 
 #' 			8) barren land, mostly desert; 9) nonforested wetland; 10) mixed agricultural and range land;

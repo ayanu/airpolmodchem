@@ -4,9 +4,19 @@
 \alias{dry.deposition.velocity}
 \title{Calculate dry depostion volocity}
 \usage{
-dry.deposition.velocity(u.star, zz, z.0, GR, TT.s, lu = 2, season = 1,
-  spec = c("O3", "SO2", "NO2", "NO", "HNO3", "H2O2", "HONO"), H.star, f.0,
-  Dv.by.Dq)
+dry.deposition.velocity(
+  u.star,
+  zz,
+  z.0,
+  GR,
+  TT.s,
+  lu = 2,
+  season = 1,
+  spec = c("O3", "SO2", "NO2", "NO", "HNO3", "H2O2", "HONO"),
+  H.star,
+  f.0,
+  Dv.by.Dq
+)
 }
 \arguments{
 \item{u.star}{Friction velocity in the surface layer (m/s)}
@@ -17,7 +27,7 @@ dry.deposition.velocity(u.star, zz, z.0, GR, TT.s, lu = 2, season = 1,
 
 \item{GR}{Global radiation (W/m2)}
 
-\item{TT.s}{Surface temperature in (°C)}
+\item{TT.s}{Surface temperature in (degree C)}
 
 \item{lu}{Landuse/landcover class used by Wesely. 1) Urban land; 2) agricultural land; 3) range land;
 4) deciduous forest; 5) coniferous forest; 6) mixed forest; 7) water, both salt and fresh; 
