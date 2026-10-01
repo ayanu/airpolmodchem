@@ -249,6 +249,11 @@ update.emissions = function(spec, E=NULL, mu=NULL, dt=1, V=1, dtm=chron(0), hour
 
 	return(dconc)
 }
+#' Submit all concentrations to KPP
+#' 
+#' @param conc concentrations passed to kpp
+#' @param dconc concentration increment to be added to conc before passing to kpp
+#' 
 #' @export 
 update.KPP.concentrations = function(conc, dconc){
 	nn.spec = length(conc)

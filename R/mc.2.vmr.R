@@ -1,7 +1,7 @@
 
 # cc in micro gram / m^3
 # pp in hPa
-# TT in °C
+# TT in degree C
 #' @export 
 mc.2.vmr = function(cc, molw, species="CO", TT=20, pp=1013.25){
 
@@ -17,7 +17,7 @@ mc.2.vmr = function(cc, molw, species="CO", TT=20, pp=1013.25){
         idx = 1
     }
     
-    #   assume that if temperature smaller 100 is given in °C
+    #   assume that if temperature smaller 100 is given in ?C
     TT[TT<100] = TT[TT<100] + 273.15
     
     nc = cc/1E6/molw[idx]	#	moles of target gas per volume

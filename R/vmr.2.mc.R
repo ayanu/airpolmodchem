@@ -12,7 +12,7 @@ vmr.2.mc = function(vmr, molw, species="CO", TT=20, pp=1013.25){
         idx = 1
     }
 
-    #   assume that if temperature smaller 100 is given in °C
+    #   assume that if temperature smaller 100 is given in degree C
     TT[TT<100] = TT[TT<100] + 273.15
     #   number of moles per m^3
     na = pp*100/(R.star*TT)

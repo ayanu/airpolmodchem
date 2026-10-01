@@ -1,6 +1,6 @@
 #' @export 
 vmr.2.nc = function(vmr, TT=20, pp=1013.25){
-    #   assume that if temperature smaller 100 is given in °C
+    #   assume that if temperature smaller 100 is given in degree C
     TT[TT<150] = TT[TT<150] + 273.15
 
 	#   number of molecules per cm^3
