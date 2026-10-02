@@ -2,18 +2,18 @@
 \alias{TT.TD.PP.2.TV}
 \title{calculate virtual temperature from ambient and dew point temperature}
 \description{
-\code{TT.TD.PP.2.RH} calculates the virtual temperature of an air parcel from its ambient temperature (K or 캜) and dew point temperature (K or 캜)
+\code{TT.TD.PP.2.RH} calculates the virtual temperature of an air parcel from its ambient temperature (K or 째C) and dew point temperature (K or 째C)
 }
 \usage{
 TT.TD.PP.2.TV(tt, td, pp=1013.25)
 }
 \arguments{
-  \item{tt}{ambient temperature (K >150 or 캜<150)}
-  \item{td}{dew point temperature (K >150 or 캜<150)}
+  \item{tt}{ambient temperature (K >150 or 째C<150)}
+  \item{td}{dew point temperature (K >150 or 째C<150)}
   \item{pp}{ambient pressure (hPa)}  
 }
 \details{
-\code{TT.TD.PP.2.TV} calculates the virtual temperature of an air parcel from its ambient temperature (K or 캜) and dew point temperature (K or 캜).
+\code{TT.TD.PP.2.TV} calculates the virtual temperature of an air parcel from its ambient temperature (K or 째C) and dew point temperature (K or 째C).
 }
 \value{
     virtual temperature in K

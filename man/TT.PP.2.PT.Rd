@@ -2,17 +2,17 @@
 \alias{TT.PP.2.PT}
 \title{calculate potential temperature}
 \description{
-calculate potential temperature (K) from ambient temperature (K or °C) and ambient pressure (hPa)
+calculate potential temperature (K) from ambient temperature (K or Â°C) and ambient pressure (hPa)
 }
 \usage{
 TT.PP.2.PT(tt, pp)
 }
 \arguments{
-  \item{tt}{ambient temperatuer (K >150, °C <150) }
+  \item{tt}{ambient temperatuer (K >150, Â°C <150) }
   \item{pp}{ambient pressure (hPa)}
 }
 \details{
-Calculate potential temperature (K) of an air parcel from its ambient temperature (K or °C) and its ambient pressure (hPa).
+Calculate potential temperature (K) of an air parcel from its ambient temperature (K or Â°C) and its ambient pressure (hPa).
 }
 \value{
 Potential temperature (K)

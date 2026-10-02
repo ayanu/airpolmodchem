@@ -2,17 +2,17 @@
 \alias{TT.TD.2.RH}
 \title{calculate relative humidity from ambient and dew point temperature}
 \description{
-\code{TT.TD.2.RH} calculates the relative humidity (\%) of an air parcel from its ambient temperature (K or 캜) and dew point temperature (K or 캜)
+\code{TT.TD.2.RH} calculates the relative humidity (\%) of an air parcel from its ambient temperature (K or 째C) and dew point temperature (K or 째C)
 }
 \usage{
 TT.TD.2.RH(tt, td)
 }
 \arguments{
-  \item{tt}{ambient temperature (K >150 or 캜<150)}
-  \item{td}{dew point temperature (K >150 or 캜<150)}
+  \item{tt}{ambient temperature (K >150 or 째C<150)}
+  \item{td}{dew point temperature (K >150 or 째C<150)}
 }
 \details{
-\code{TT.TD.2.RH} calculates the relative humidity (\%) of an air parcel from its ambient temperature (K or 캜) and dew point temperature (K or 캜).
+\code{TT.TD.2.RH} calculates the relative humidity (\%) of an air parcel from its ambient temperature (K or 째C) and dew point temperature (K or 째C).
 }
 \value{
     relative humidity (\%)

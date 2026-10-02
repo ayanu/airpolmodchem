@@ -8,7 +8,7 @@
 ES.ice(tt)
 }
 \arguments{
-  \item{tt}{temperature of ice (units interpreted as K if larger 150, otherwise °C. Do not mix units in the same vector.)}
+  \item{tt}{temperature of ice (units interpreted as K if larger 150, otherwise Â°C. Do not mix units in the same vector.)}
 }
 \details{
     the formula 6.112 (hPa) *exp(22.46*tt/(272.62+tt)) is used if tt is in (K)
@@ -22,6 +22,6 @@ ES.ice(tt)
 \examples{
 #   should yield the same results
     print(ES.ice(273.15))   # assuming (K)
-    print(ES.ice(0))        # assuming (°C)
+    print(ES.ice(0))        # assuming (Â°C)
 }
 \keyword{manip}% at least one, from doc/KEYWORDS
