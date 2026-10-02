@@ -25,7 +25,6 @@ jobs:
       - name: Convert Rd to HTML
         run: |
           mkdir -p docs
-#          Rscript -e "rd_files <- list.files('man', full.names = TRUE); lapply(rd_files, function(f) tools::Rd2HTML(f, out = file.path('docs', paste0(tools::file_path_sans_ext(basename(f)), '.html'))))"
           Rscript -e "require(pkgdown); build_site()"
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
