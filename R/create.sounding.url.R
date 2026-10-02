@@ -22,32 +22,17 @@
 #' @author stephan.henne@@empa.ch
 #' 
 #' @export 
-create.sounding.url = function(dtm,stnm){
-		## '''
-		## usage:  
-		## create_sounding_url('30122010','00','06610')
-		## 
-		## input: 
-		## date (str) - the date as ddmmyyyy
-		## time (str) - the time as hh   ('00' or '12')
-		## stnm (str) - the station number, e.g.: 
-		## 10410 Essen (D)
-		## 10618 Idar-Oberstein (D)
-		## 07145 Trappes (F)
-		## 06260 De Bilt (NL)
-		## 10238 Bergen (D)
-		## 06610 Payerne (CH)   
-		## 
-		## output: 
-		## url (str) 
-		## '''
-	year = chron.2.string(dtm, "%Y")
+create.sounding.url = function(dtm, stnm){
+
+  year = chron.2.string(dtm, "%Y")
 	mon = chron.2.string(dtm, "%m")
 	ddhh = chron.2.string(dtm, "%d%H")
-	url = paste("http://weather.uwyo.edu/cgi-bin/sounding?region=naconf&TYPE=TEXT", 
-			"%3ALIST&YEAR=", year, "&MONTH=", mon, "&FROM=", ddhh, "&TO=", ddhh, "&STNM=", stnm, 
-			sep="")
-	
+	yymmdd = chron.2.string(dtm, "%Y-%m-%d")
+	hhmmss = chron.2.string(dtm, "%H:%M:%S")
+
+	url = paste0("https://weather.arcc.uwyo.edu/wsgi/sounding?datetime=", yymmdd, "%20", hhmmss, "&id=", 
+	             stnm, "&type=TEXT:CSV&src=BUFR")
+
 	return(url)
 }
 

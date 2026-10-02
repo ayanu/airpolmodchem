@@ -4,17 +4,19 @@
 \alias{get.sounding}
 \title{Reads radiosonde data}
 \usage{
-get.sounding(fn)
+get.sounding(url)
 }
 \arguments{
-\item{fn}{(character) Either the filename or the URL of the sounding ASCII file.}
+\item{url}{(character) Either the filename or the URL of the sounding csv file.}
 }
 \value{
 data.frame with sounding data
 }
 \description{
-The sounding data needs to be in the ASCII format as obtained from University of Wyoming 
+The sounding data needs to be in the csv format as obtained from University of Wyoming 
 radiosonde archive. Only one sounding per file is supported.
+Check: https://weather.arcc.uwyo.edu/upperair/sounding.shtml
+Select 'Output type': Comma Separated Values
 }
 \author{
 stephan.henne@empa.ch

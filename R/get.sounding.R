@@ -5,57 +5,57 @@
 
 #' Reads radiosonde data
 #' 
-#' The sounding data needs to be in the ASCII format as obtained from University of Wyoming 
+#' The sounding data needs to be in the csv format as obtained from University of Wyoming 
 #' radiosonde archive. Only one sounding per file is supported.
+#' Check: https://weather.arcc.uwyo.edu/upperair/sounding.shtml
+#' Select 'Output type': Comma Separated Values
 #' 
-#' @param fn (character) Either the filename or the URL of the sounding ASCII file.
+#' @param url (character) Either the filename or the URL of the sounding csv file.
 #' 
 #' @return data.frame with sounding data
 #' 
 #' @author stephan.henne@@empa.ch
 #' 
 #' @export 
-get.sounding = function(fn){
+get.sounding = function(url){
+  require(stringr)
+  
+  # helper function to test if 'url' is a web address or file
+  is.valid.url <- function(string) {
+    pattern <- "(https?|ftp)://[^ /$.?#].[^\\s]*" 
+    stringr::str_detect(string, pattern)
+  }  
 
-	# load the data from a sounding, using the university of wyoming website
-	con = file(fn, open="r")
-	lines = readLines(con)
-	close(con)
-		
-	
-#	print(lines[grepl("Convective Available", lines)])
-	
-	#	header line 
-	hdr = which(grepl("<PRE>", lines))[1]+2
-	#	units line
-	units = which(grepl("<PRE>", lines))[1]+3
-	#	first and last data lines
-	frst = which(grepl("<PRE>", lines))[1]+5	
-	last = which(grepl("</PRE>", lines))[1]-1
-	col.end = regexpr("[A-Z][ \n]", lines[hdr])
-	repeat{
-		tmp = regexpr("[A-Z][ \n]", substring(lines[hdr], col.end[length(col.end)]+1))
-		if (tmp==-1) break		
-		col.end = c(col.end, tmp+col.end[length(col.end)])		
-	}	
-	col.end = c(col.end, nchar(lines[hdr]))
-	
-	con = file(fn, open="r")
-	dat = read.fwf(con, widths=diff(c(0, col.end)), header=FALSE, skip=frst-1, n=last-frst+1)
-	close(con)	
-	names(dat) = strsplit(lines[hdr], "[ ]+")[[1]][-1]
-	
-	#	remove reference pressure level 
-	if (dat$PRES[1]==1000){
-		dat = dat[-1, ]
-	}
-	
-	#	units
-	units = strsplit(lines[units], "[ ]+")[[1]][-1]
-	for (ii in 1:length(units)){
-		attr(dat[[ii]], "units") = units[ii]
-	}
-	return(dat)
+  if (is.valid.url(url)){  
+    # name of temporary file for downloading data to
+	  tmp.fn = tempfile()	
+	  # there are two types of data formats in the database (BUFR, FM35). Default URL is set to BUFR. 
+	  # If request fails, type is changed to FM35.
+	  rsp = try(download.file(url, tmp.fn, quiet = TRUE))
+	  if (class(rsp)=="try-error"){
+  	  url = sub("BUFR", "FM35", url)
+	    rsp = try(download.file(url, tmp.fn, quiet = TRUE))
+	    if (class(rsp)=="try-error"){
+	       stop(rsp)
+	    }
+	  }
+	  # read data from temporary file
+    dat = read.table(tmp.fn, header=TRUE, sep=",")
+    # remove temporary file
+    file.remove(tmp.fn)
+  } else {
+    dat = read.table(url, header=TRUE, sep=",")
+  }
+  
+  # convert relevant names
+  names(dat)[grepl("pressure", names(dat))]   = "PRES"
+  attr(dat$PRES, "units") = "hPa"
+  names(dat)[names(dat)=="temperature_C"]     = "TEMP"
+  attr(dat$TEMP, "units") = "°C"
+  names(dat)[names(dat)=="mixing.ratio_g.kg"] = "MIXR"  
+  attr(dat$MIXR, "units") = "°g kg-1"
+  
+  return(dat)
 }
 	
 #require(chron)

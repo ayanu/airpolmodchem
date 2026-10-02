@@ -251,7 +251,7 @@ skewT.plot = function (snd, T.surf, qv.surf, plot=TRUE, plot.cape=TRUE, plot.LCL
 		text(Tmin, lcl, paste("LCL:", round(lcl/100), "(hPa)"), cex=1.2, adj=c(-0.05, -0.05), 
 			font=2, col="purple")
 	
-		cat("LCL:", lcl, "(Pa)\n")
+		#cat("LCL:", lcl, "(Pa)\n")
 #		ax.text(Tmin+.5,lcl,'LCL',color='purple',ha='left',va='center',fontsize=14,\
 #		bbox=dict(edgecolor='black',facecolor='white', alpha=0.8))    
 	}
@@ -283,9 +283,6 @@ skewT.plot = function (snd, T.surf, qv.surf, plot=TRUE, plot.cape=TRUE, plot.LCL
 		}
 	}
 	
-	
-	
-	
 	# plot the actual graph
 	if (plot){
 		lines(T + skewnessTerm(pnew,P_bot), pnew, col= 'red', lty=1, lwd= 2*par("lwd"))
@@ -294,7 +291,8 @@ skewT.plot = function (snd, T.surf, qv.surf, plot=TRUE, plot.cape=TRUE, plot.LCL
 
 	res = list(lcl=lcl)
 	if (plot.cape) res$cape = cape
-	return(res)
+	
+	return(invisible(res))
 }
 
 ##require(AirPolModChem)
