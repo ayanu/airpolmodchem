@@ -13,7 +13,8 @@ install.packages("remotes")
 Then installation can be started using
 
 ```
-install_github("ayanu/airpolmodchem.git")
+library(remotes)
+install_github("ayanu/airpolmodchem")
 ```
 
 # Usage 
