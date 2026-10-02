@@ -1,0 +1,81 @@
+<!DOCTYPE html><html><head><title>R: Pressure decrease for layer with constant pressure gradient</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script>
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>polytropic.pressure.gradient</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>
+Pressure decrease for layer with constant pressure gradient
+</h2>
+
+<h3>Description</h3>
+
+<p>Calculates the pressure at an altitude increment for a layer with constant temperature gradient.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>polytropic.pressure.gradient(z, p0 = 1013.25, T0 = 288.15, gamma = g.0/c.p)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table role = "presentation">
+<tr><td><code id="z">z</code></td>
+<td>
+
+<p>Altitude increment in units m
+</p>
+</td></tr>
+<tr><td><code id="p0">p0</code></td>
+<td>
+
+<p>Pressure at bottom of layer 
+</p>
+</td></tr>
+<tr><td><code id="T0">T0</code></td>
+<td>
+
+<p>Temperature at bottom of layer in K or degree C
+</p>
+</td></tr>
+<tr><td><code id="gamma">gamma</code></td>
+<td>
+
+</td></tr>
+</table>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>##---- Should be DIRECTLY executable !! ----
+##-- ==&gt;  Define data, use random,
+##--	or do  help(data=index)  for the standard data sets.
+
+## The function is currently defined as
+function (z, p0 = 1013.25, T0 = 288.15, gamma = g.0/c.p) 
+{
+    T0[T0 &lt; 100] = T0[T0 &lt; 100] + 273.15
+    p = p0 * ((T0 - gamma * z)/T0)^(g.0/R.air/gamma)
+    return(p)
+  }
+</code></pre>
+
+</main>
+
+</div>
+</body></html>

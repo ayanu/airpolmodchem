@@ -1,0 +1,119 @@
+<!DOCTYPE html><html><head><title>R: Functions for ETH Lecture Air Pollution Modeling and...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script>
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>AirPolModChem-package</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>
+Functions for ETH Lecture Air Pollution Modeling and Chemistry
+</h2>
+
+<h3>Description</h3>
+
+<p>A collection of useful functions and simple model tools as discussed during the ETH lecture Air Pollution Modeling and Chemistry in HS2013.
+</p>
+
+
+<h3>Details</h3>
+
+
+<table>
+<tr>
+ <td style="text-align: left;">
+Package: </td><td style="text-align: left;"> AirPolModChem</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+Type: </td><td style="text-align: left;"> Package</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+Version: </td><td style="text-align: left;"> 0.1</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+Date: </td><td style="text-align: left;"> 2013-09-16</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+Depends: </td><td style="text-align: left;"> R (&gt;= 3.0.0), chron</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+License: </td><td style="text-align: left;"> GPL (&gt;=3)</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+Encoding: </td><td style="text-align: left;"> ISO-8859-1</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+Built: </td><td style="text-align: left;"> R 3.0.1; x86_64-w64-mingw32; 2013-09-29 19:49:05 UTC; windows
+</td>
+</tr>
+
+</table>
+
+<pre>
+AirPolModChem-package   Functions for ETH Lecture Air Pollution
+                        Modeling and Chemistry
+E.2.TD                  Calculate temperature of water surface for
+                        given a certain water vapor pressure
+E.2.TD.ice              Calculate temperature of ice surface given a
+                        certain water vapor pressure
+ES                      Calculate saturation vapor pressure above water
+ES.ice                  Calculate saturation vapor pressure above ice
+RH.TT.2.E               Calculate water vapor partial pressure of an
+                        air parcel
+RH.TT.2.TD              Calculate dew point temperature of an air
+                        parcel
+RH.TT.PP.2.SH           Calculate specific humidity from relative
+                        humidity, ambient temperature, and pressure
+TT.PP.2.PT              calculate potential temperature
+TT.SH.2.TV              calculate virtual temperature from temperature
+                        and specific humidity
+TT.TD.2.RH              calculate relative humidity from ambient and
+                        dew point temperature
+TT.TD.PP.2.TV           calculate virtual temperature from ambient and
+                        dew point temperature
+constants               Physical constants
+isa.pp.2.zz             Pressure to altitude for international standard
+                        atmosphere
+isa.zz.2.pp             Altitude to pressure for international standard
+                        atmosphere
+isa.zz.2.tt             Altitude to pressure for international standard
+                        atmosphere
+mc.2.vmr                Convert mass concentrations to volume mixing
+                        ratios.
+nc.2.vmr				Convert number concentrations to volume mixng
+						ratios.                        
+vmr.2.mc                Convert volume mixing ratios to mass
+                        concentrations.
+vmr.2.nc                Convert volume mixing ratios to number
+                        concentrations.
+</pre>
+
+
+<h3>Author(s)</h3>
+
+<p>Stephan Henne &lt;stephan.henne@empa.ch&gt;
+</p>
+<p>Maintainer: Stephan Henne &lt;stephan.henne@empa.ch&gt;
+</p>
+
+</main>
+
+</div>
+</body></html>

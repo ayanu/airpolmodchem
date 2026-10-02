@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head><title>R: Submit all concentrations to KPP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script>
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>update.KPP.concentrations</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Submit all concentrations to KPP</h2>
+
+<h3>Description</h3>
+
+<p>Submit all concentrations to KPP
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>## S3 method for class 'KPP.concentrations'
+update(conc, dconc)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table role = "presentation">
+<tr><td><code id="conc">conc</code></td>
+<td>
+<p>concentrations passed to kpp</p>
+</td></tr>
+<tr><td><code id="dconc">dconc</code></td>
+<td>
+<p>concentration increment to be added to conc before passing to kpp</p>
+</td></tr>
+</table>
+
+</main>
+
+</div>
+</body></html>

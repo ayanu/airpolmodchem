@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head><title>R: calculate relative humidity from ambient and dew point...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script>
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>TT.TD.2.RH</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>calculate relative humidity from ambient and dew point temperature</h2>
+
+<h3>Description</h3>
+
+<p><code>TT.TD.2.RH</code> calculates the relative humidity (%) of an air parcel from its ambient temperature (K or °C) and dew point temperature (K or °C)
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>TT.TD.2.RH(tt, td)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table role = "presentation">
+<tr><td><code id="tt">tt</code></td>
+<td>
+<p>ambient temperature (K &gt;150 or °C&lt;150)</p>
+</td></tr>
+<tr><td><code id="td">td</code></td>
+<td>
+<p>dew point temperature (K &gt;150 or °C&lt;150)</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p><code>TT.TD.2.RH</code> calculates the relative humidity (%) of an air parcel from its ambient temperature (K or °C) and dew point temperature (K or °C).
+</p>
+
+
+<h3>Value</h3>
+
+<p>relative humidity (%)
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Stehpan Henne</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>    print(TT.TD.2.RH(20, 20))
+    print(TT.TD.2.RH(20, 10))
+</code></pre>
+
+</main>
+
+</div>
+</body></html>

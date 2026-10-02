@@ -1,0 +1,93 @@
+<!DOCTYPE html><html><head><title>R: Draw a Skew-T diagram</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script>
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>skewT.plot</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Draw a Skew-T diagram</h2>
+
+<h3>Description</h3>
+
+<p>Draws a Skew-T diagram for a given atmsopheric profile of atmospheric temperature, specific
+humidity and pressure. Optionally calculates the Lifting Condensation Level and Convective 
+Available Potential Energy (CAPE).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>skewT.plot(
+  snd,
+  T.surf,
+  qv.surf,
+  plot = TRUE,
+  plot.cape = TRUE,
+  plot.LCL = TRUE,
+  dp = 100,
+  ...
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table role = "presentation">
+<tr><td><code id="snd">snd</code></td>
+<td>
+<p>(data.frame) should contain at least the columns 'PRES' for atmospheric pressure in 
+hPa, 'TEMP' for atmospheric temperature in degree C, and 'MIXR' for the water vapour 
+mixing ratio in g/kg.</p>
+</td></tr>
+<tr><td><code id="T.surf">T.surf</code></td>
+<td>
+<p>optional surface temperature (degree C) used for LCL and CAPE calculation</p>
+</td></tr>
+<tr><td><code id="plot.cape">plot.cape</code></td>
+<td>
+<p>(logical) if TRUE CAPE is calculated and displayed</p>
+</td></tr>
+<tr><td><code id="plot.LCL">plot.LCL</code></td>
+<td>
+<p>(logical) if TRUE lifting condensation level is calculated and displayed</p>
+</td></tr>
+<tr><td><code id="pv.surf">pv.surf</code></td>
+<td>
+<p>optional water vapor mixing ratio at the surface (g/kg) used for LCL and CAPE
+calculation</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>NULL at success
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>stephan.henne@empa.ch
+</p>
+
+
+<h3>References</h3>
+
+<p>Rogers&amp;Yau
+</p>
+
+</main>
+
+</div>
+</body></html>

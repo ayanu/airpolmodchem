@@ -1,0 +1,108 @@
+<!DOCTYPE html><html><head><title>R: Physical constants</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script>
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>constants</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Physical constants</h2>
+
+<h3>Description</h3>
+
+<p>Constants often needed for atmospheric calculations.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>R.star
+R.air
+R.h2o
+k.b
+N.A
+mu.air
+mu.h2o
+T.0
+PP.0
+F.0
+g.0
+</code></pre>
+
+
+<h3>Details</h3>
+
+
+<table>
+<tr>
+ <td style="text-align: left;">
+Symbol	</td><td style="text-align: left;"> Description </td><td style="text-align: left;"> Units </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+R.star		</td><td style="text-align: left;"> Universal gas constant </td><td style="text-align: left;">  J/K/mol </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+R.air 	</td><td style="text-align: left;"> Specific gas constant for dry air </td><td style="text-align: left;"> J/kg/K </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+R.h2o	</td><td style="text-align: left;"> Specific gas constant for water vapor </td><td style="text-align: left;"> J/kg/K </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+k.b		</td><td style="text-align: left;"> Boltzmann constant </td><td style="text-align: left;"> J/K </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+N.A		</td><td style="text-align: left;"> Avogardo number (number of atoms/molecules in one mole) </td><td style="text-align: left;"> 1/mol </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+mu.air 	</td><td style="text-align: left;"> Molecular weight of dry air </td><td style="text-align: left;"> g/mol </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+mu.h2o	</td><td style="text-align: left;"> Molecular weidht of water </td><td style="text-align: left;"> g/mol </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+T.0		</td><td style="text-align: left;"> Freezing point of water 	</td><td style="text-align: left;"> K	</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+PP.0	</td><td style="text-align: left;"> Standard ambient sea level pressure </td><td style="text-align: left;"> hPa </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+F.0		</td><td style="text-align: left;"> Solar constant 	</td><td style="text-align: left;"> W/m2 </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+g.0		</td><td style="text-align: left;"> Average gravity of Earth 	</td><td style="text-align: left;"> m/s2 
+</td>
+</tr>
+
+</table>
+
+
+
+<h3>Author(s)</h3>
+
+<p>Stephan Henne <a href="mailto:stephan.henne@empa.ch">stephan.henne@empa.ch</a></p>
+
+</main>
+
+</div>
+</body></html>

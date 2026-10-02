@@ -1,0 +1,67 @@
+<!DOCTYPE html><html><head><title>R: Calculate dew point temperature of an air parcel</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script>
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>RH.TT.2.TD</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Calculate dew point temperature of an air parcel</h2>
+
+<h3>Description</h3>
+
+<p>Calculate dew point temperature of an air parcel (K) from the air parcel's relatve humidity (%) and its ambient temperature (K or °C).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>RH.TT.2.TD(rh, tt)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table role = "presentation">
+<tr><td><code id="rh">rh</code></td>
+<td>
+<p>relative humidity (%)</p>
+</td></tr>
+<tr><td><code id="tt">tt</code></td>
+<td>
+<p>ambient temperature (K if &gt;150, °C if &lt;150)</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>dew point temperature (K)
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Stephan Henne</p>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>## 
+print(RH_TT_2_TD(100, 20))
+</code></pre>
+
+</main>
+
+</div>
+</body></html>

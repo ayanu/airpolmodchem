@@ -1,0 +1,77 @@
+<!DOCTYPE html><html><head><title>R: Convert volume mixing ratios to mass concentrations.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script>
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>vmr.2.mc</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Convert volume mixing ratios to mass concentrations.</h2>
+
+<h3>Description</h3>
+
+<p>Convert volume mixing ratios in ppbv to mass concentrations in ug/cm3. 
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>vmr.2.mc(vmr, molw, species = "CO", TT = 20, pp = 1013.25)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table role = "presentation">
+<tr><td><code id="vmr">vmr</code></td>
+<td>
+<p> volume mixing ratio in ppb </p>
+</td></tr>
+<tr><td><code id="molw">molw</code></td>
+<td>
+<p>molar mass of species under consideration in g/mol </p>
+</td></tr>
+<tr><td><code id="species">species</code></td>
+<td>
+<p> alternatively to molw the name of the species can be given. So far molar masses are included for: &quot;CO&quot;, &quot;CH4&quot;, &quot;O3&quot;, &quot;NO2&quot;, &quot;NO&quot;, &quot;N2O&quot;  </p>
+</td></tr>
+<tr><td><code id="TT">TT</code></td>
+<td>
+<p> ambient temperature in °C, default 20s </p>
+</td></tr>
+<tr><td><code id="pp">pp</code></td>
+<td>
+<p> ambient pressure in hPa, default 1013.25 </p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>Mass concentration in units ug/m3. 
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p> Stephan Henne (stephan.henne@emap.ch) </p>
+
+
+<h3>See Also</h3>
+
+ <p><code>mc.2.vmr</code>, <code>vmr.2.nc</code> </p>
+
+</main>
+
+</div>
+</body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html><html><head><title>R: Gauss plume calculation (directional)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script>
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>gauss.plume.2D</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Gauss plume calculation (directional)</h2>
+
+<h3>Description</h3>
+
+<p>Calculates concentration of a Gaussian plume for a given location (x,y,z), 
+assuming that the source is located at x=0, y=0 and z=h.e. Main wind direction can be given.
+Stability classes following the Pasquill definition are used.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>gauss.plume.2D(u = 1, v = 1, WS, WD, x, y, z, Q, h.e, stability, h.m)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table role = "presentation">
+<tr><td><code id="u">u</code></td>
+<td>
+<p>wind speed in x direction given in m/s.</p>
+</td></tr>
+<tr><td><code id="v">v</code></td>
+<td>
+<p>wind speed in x direction given in m/s.</p>
+</td></tr>
+<tr><td><code id="WS">WS</code></td>
+<td>
+<p>scalar wind speed given in m/s.</p>
+</td></tr>
+<tr><td><code id="WD">WD</code></td>
+<td>
+<p>wind direction given in degree. 0: wind from north, 90: wind from east, 
+180: wind from south, 270: wind from west.</p>
+</td></tr>
+<tr><td><code id="x">x</code></td>
+<td>
+<p>Location in x direction for which to calculate the Gauss plume concentration, 
+given in m from source. 
+Note that x,y,z can be arrays, but they should be of the same shape.</p>
+</td></tr>
+<tr><td><code id="y">y</code></td>
+<td>
+<p>Location in y direction for which to calculate the Gauss plume concentration, 
+given in m from source.</p>
+</td></tr>
+<tr><td><code id="z">z</code></td>
+<td>
+<p>Location in z direction for which to calculate the Gauss plume concentration, 
+given in m above ground.</p>
+</td></tr>
+<tr><td><code id="Q">Q</code></td>
+<td>
+<p>emission flux of the source. Given in kg/s.</p>
+</td></tr>
+<tr><td><code id="h.e">h.e</code></td>
+<td>
+<p>effective emission height. Given in m above ground.</p>
+</td></tr>
+<tr><td><code id="stability">stability</code></td>
+<td>
+<p>Stability class following Pasquill definition. Possible values:
+A: extremely unstable
+B: moderately unstable
+C: slightly unstable
+D: neutral
+E: slightly stable
+F: stable</p>
+</td></tr>
+<tr><td><code id="h.m">h.m</code></td>
+<td>
+<p>Boundary layer height given in m above ground. If missing or NA no boundary 
+layer top is assumed.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>Concentration resulting from source strength Q, given in kg/m3
+</p>
+
+</main>
+
+</div>
+</body></html>
