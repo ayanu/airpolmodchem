@@ -16,7 +16,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          Rscript -e "install.packages('roxygen2')"
+          Rscript -e "install.packages(c('chron', 'stringr', 'roxygen2'))"
 
       - name: Generate Rd files
         run: |
