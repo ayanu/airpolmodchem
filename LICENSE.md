@@ -1,4 +1,4 @@
-# GPL License
+# GNU General Public License
 
 Copyright (c) 2026 Stephan Henne, Empa, Swiss Federal Laboratories for Materials Science and Technology, Dübendorf, Switzerland
 
