@@ -1,4 +1,4 @@
-PKG_FCFLAGS = -cpp	#	will only work with gnu compiler
+PKG_FCFLAGS = -cpp -fPIC	#	will only work with gnu compiler
 
 GENSRC = CRI_5VOC_Precision.f90  \
 	 CRI_5VOC_Parameters.f90     \

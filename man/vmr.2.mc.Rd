@@ -11,7 +11,7 @@ vmr.2.mc(vmr, molw, species = "CO", TT = 20, pp = 1013.25)
   \item{vmr}{ volume mixing ratio in ppb }
   \item{molw}{molar mass of species under consideration in g/mol }
   \item{species}{ alternatively to molw the name of the species can be given. So far molar masses are included for: "CO", "CH4", "O3", "NO2", "NO", "N2O"  }
-  \item{TT}{ ambient temperature in °C, default 20s }
+  \item{TT}{ ambient temperature in Â°C, default 20s }
   \item{pp}{ ambient pressure in hPa, default 1013.25 }
 }
 \value{

@@ -9,7 +9,7 @@ nc.2.vmr(nc, TT = 20, pp = 1013.25)
 }
 \arguments{
   \item{nc}{ Number concentration in units 1/cm3 }
-  \item{TT}{ ambient temperature in K, if < 150 assumed to be in °C, default 20 }
+  \item{TT}{ ambient temperature in K, if < 150 assumed to be in Â°C, default 20 }
   \item{pp}{ ambient pressure in hPa, default 1013.25 }
 }
 \value{   

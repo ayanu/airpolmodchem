@@ -9,7 +9,7 @@ vmr.2.nc(vmr, TT = 20, pp = 1013.25)
 }
 \arguments{
   \item{vmr}{ volume mixing ratio in ppb }
-  \item{TT}{ ambient temperature in K, if < 150 assumed to be in °C, default 20 }
+  \item{TT}{ ambient temperature in K, if < 150 assumed to be in Â°C, default 20 }
   \item{pp}{ ambient pressure in hPa, default 1013.25 }
 }
 \value{
