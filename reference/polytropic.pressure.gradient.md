@@ -62,5 +62,5 @@ function (z, p0 = 1013.25, T0 = 288.15, gamma = g.0/c.p)
 #>     p = p0 * ((T0 - gamma * z)/T0)^(g.0/R.air/gamma)
 #>     return(p)
 #> }
-#> <environment: 0x55f7dd7e13e8>
+#> <environment: 0x55fe8f28eab0>
 ```
