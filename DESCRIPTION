@@ -6,12 +6,16 @@ Date: 2026-10-02
 Author: Stephan Henne <stephan.henne@empa.ch>
 Maintainer: Stephan Henne <stephan.henne@empa.ch>
 Depends:
-    R (>= 4.1.0),
-    chron,
-    stringr
+    R (>= 4.1.0)
+Imports:
+	utils,
+	stats,
+	graphics,
+  chron, 
+  stringr
 Description: A collection of useful functions and simple model tools as
     discussed during the ETH lecture Air Pollution Modeling and Chemistry in
     HS2026.
 License: GPL (>=3)
 Encoding: UTF-8
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.1.0
