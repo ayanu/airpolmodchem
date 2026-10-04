@@ -25,7 +25,8 @@ jobs:
         with:
           cache-version: 3
           extra-packages: >
-            any::rcmdcheck
+            any::rcmdcheck,
+            roxygen2
           needs: check
 
       - name: Generate Rd files
