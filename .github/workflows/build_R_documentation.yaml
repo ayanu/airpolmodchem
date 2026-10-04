@@ -17,9 +17,16 @@ jobs:
       - name: Install pandoc
         uses: pandoc/actions/setup@v1
 
-      - name: Install dependencies
-        run: |
-          Rscript -e "install.packages(c('chron', 'stringr', 'roxygen2', 'pkgdown'))"
+#      - name: Install dependencies
+#        run: |
+#          Rscript -e "install.packages(c('chron', 'stringr', 'roxygen2', 'pkgdown'))"
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          cache-version: 3
+          extra-packages: >
+            any::rcmdcheck
+          needs: check
 
       - name: Generate Rd files
         run: |
