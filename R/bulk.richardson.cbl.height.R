@@ -1,10 +1,24 @@
-# TODO: Add comment
-# 
-# Author: hes
-###############################################################################
-
-
-bulk.richardson.cbl.height = function(snd, ri.cr=0.25, plot=TRUE, unit=c("ASL", "AGL"), zlim=c(0,5000), smooth=FALSE){
+#' Calculate planetary boundary layer height
+#'
+#' Calculates the height of the planetary boundary layer height using a bulk Richardson number
+#' method. 
+#' 
+#' @param snd data.frame with vertical sounding data. Needs to include the fields 'pt', 'sh',
+#'				'uu', 'vv', and 'zz' for potential temperature, specific humidity, 
+#'				west-east wind speed, south-north wind speed and height, respectively.
+#' @param ri.cr Critical bulk Richardson number. Altitude with Richardson numbers above 
+#'				this value are considered outside planetary boundary layer. 
+#' @param plot (logical) if TRUE (default) the vertical profiles are plotted and the estimated
+#'				boundary layer height indicated
+#' @param unit  Unit of vertical coordinate. One of 'ASL' or 'AGL'. 
+#' @param zlim  Vertical limits of profile plot. 
+#' @param smooth (logical) If TRUE, apply a 5-point running mean before calculating Richardson
+#'				number. Useful for noisy sounding data. Default is FALSE: no running mean.
+#'
+#' @return Planetary boundary layer height in units provided by 'unit'.
+#' 
+bulk.richardson.cbl.height = function(snd, ri.cr=0.25, plot=TRUE, unit=c("ASL", "AGL"), 
+	zlim=c(0,5000), smooth=FALSE){
 	
 	#   make sure wind components are available
 	if (!"uu" %in% names(snd) || !"vv" %in% names(snd)){
@@ -21,6 +35,7 @@ bulk.richardson.cbl.height = function(snd, ri.cr=0.25, plot=TRUE, unit=c("ASL", 
 		snd$uu = kz(snd$uu, 5, 2)
 		snd$vv = kz(snd$vv, 5, 2)
 	}
+	#	if surface value is indicated by quality flag 'qf'
 	if ("qf" %in% names(snd)) {
 		surf = which(snd$qf>62)
 		if (length(surf)==0) return(NA)
@@ -45,43 +60,43 @@ bulk.richardson.cbl.height = function(snd, ri.cr=0.25, plot=TRUE, unit=c("ASL", 
 	delta.U = snd$uu[-1] - snd$uu[-nn]
 	delta.V = snd$vv[-1] - snd$vv[-nn]
 	
-	
-	#   local bulk Richardson Number
+	#   local bulk Richardson Number (Stull)
 	rb = 9.8065/snd$pt[-nn]*(delta.pt)*(delta.zz)/(delta.U^2 + delta.V^2)
-	#   integrated bulk Richardson Number
+
+	#   integrated bulk Richardson Number	(Vogelsang & Holtslag)
 	rb.2 = 9.8065/pt0 * (snd$pt - pt0) * (snd$zz - z0) / ((snd$uu-uu.0)^2 + (snd$vv-vv.0)^2)
 	
-	#	first level where Richardson number below threshold
+	#	first level where Richardson number according to Vogelesang & Holtslag below threshold
 	idx.cbl = which(rb.2>ri.cr)[1]
 	zcbl = snd$zz[idx.cbl]
-	
 	
 	if (plot){
 		par(mfcol=c(1,3), cex=1.2, mar=c(4,4,4,1)+.1, lwd=2)
 		#   temperature
-		plot(snd$pt[msk], snd$zz[msk], ylim=zlim, type="l", xlab=expression(theta~(degree*C)), ylab="Altitude (m) asl", col=2)
+		plot(snd$pt[msk], snd$zz[msk], ylim=zlim, type="l", xlab=expression(theta~(degree*C)), 
+			ylab="Altitude (m) asl", col=2)
 		par(new=TRUE)
 		plot(snd$O3[msk], snd$zz[msk], ylim=zlim, type="l", xlab="", ylab="", xaxt="n", col=4)
 		axis(3)
 		mtext("Ozone (ppb)", 3,3, cex=par("cex"), col=4)
 		lines(par("usr")[1:2], rep(zcbl,2), col=3)
 		
-#        lines(par("usr")[1:2], rep(zcbl,2))
-		
-		plot(snd$ff[msk], snd$zz[msk], ylim=zlim, type="l", xlab="Wind speed (m/s)", ylab="Altitude (m) asl", col=2)
+		plot(snd$ff[msk], snd$zz[msk], ylim=zlim, type="l", xlab="Wind speed (m/s)", 
+			ylab="Altitude (m) asl", col=2)
 		par(new=TRUE)
-		plot(snd$dd[msk], snd$zz[msk], xlim=c(0,360), ylim=zlim, type="p", xlab="", ylab="", pch=20, col=4, xaxt="n")
+		plot(snd$dd[msk], snd$zz[msk], xlim=c(0,360), ylim=zlim, type="p", xlab="", 
+			ylab="", pch=20, col=4, xaxt="n")
 		axis(3, at=seq(0,360, 90))
 		mtext("Wind Direction (degree)", 3,3, cex=par("cex"), col=4)
 		lines(par("usr")[1:2], rep(zcbl,2), col=3)
 		
-		plot(rb.2[msk], snd$zz[msk], ylim=zlim, type="l", xlab="Bulk Richardson Number", ylab="Altitude (m) asl", xlim=c(-10,10), col=2)
+		plot(rb.2[msk], snd$zz[msk], ylim=zlim, type="l", xlab="Bulk Richardson Number", 
+			ylab="Altitude (m) asl", xlim=c(-10,10), col=2)
 		lines(rb[msk], snd$zz[msk], col=4)
 		lines(rep(ri.cr, 2), par("usr")[3:4], col="gray")
 		lines(par("usr")[1:2], rep(zcbl,2), col=3)
 		mtext(paste("Rc =", ri.cr), 3, 1, col="gray", cex=1.5)
 	}
 	
-	
-	
+	return(zcbl)	
 }

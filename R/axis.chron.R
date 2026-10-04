@@ -1,9 +1,28 @@
+#' Add axis with date/time labels for chron dimension
+#'
+#' Adds axis in same way as call to 'axis'. Ticks and labels will be pretty date/time.
+#' 
+#' @param side 
+#' @param x 
+#' @param at
+#' @param format
+#' @param labels 
+#' @param tz
+#' @param lwd
+#' @param lwd.ticks
+#' @param ...
+#' 
+#' @return location on tick marks
+#'
 #' @export
-axis.chron <- function (side, x, at, format, labels, tz= "GMT", lwd=par("lwd"), lwd.ticks=par("lwd"), ...) 
-{
-    library(chron)
+#' @import chron
+#' @import graphics
+axis.chron <- function (side, x, at, format, labels, tz= "GMT", 
+	lwd=graphics::par("lwd"), lwd.ticks=graphcis::par("lwd"), ...) {
+    require(chron)
+
     mat <- missing(at)
-    range <- par("usr")[if (side%%2) 
+    range = graphics::par("usr")[if (side%%2) 
         1:2
     else 3:4]
 
@@ -101,5 +120,6 @@ axis.chron <- function (side, x, at, format, labels, tz= "GMT", lwd=par("lwd"), 
         labels <- format(zz, format = format)
     }    
     axis(side, at = z, labels = labels, lwd=lwd, lwd.ticks=lwd.ticks, ...)
-    invisible(z)
+
+    return(invisible(z))
 }

@@ -136,12 +136,16 @@ plot.skewT.ax = function(ax=None, xlim=c(-40,40), ylim=c(105000.,10000.), dp=100
 #' 				hPa, 'TEMP' for atmospheric temperature in degree C, and 'MIXR' for the water vapour 
 #' 				mixing ratio in g/kg.
 #' @param T.surf	optional surface temperature (degree C) used for LCL and CAPE calculation
-#' @param pv.surf	optional water vapor mixing ratio at the surface (g/kg) used for LCL and CAPE
-#' 					calculation
-#' @param plot.LCL	(logical) if TRUE lifting condensation level is calculated and displayed
+#' @param qv.surf	optional water vapor mixing ratio at the surface (g/kg) used for LCL and CAPE
+#' 					calculation.
+#' @param plot (logical) If TRUE (default) sounding and parcle descent are plotted. Otherwise 
+#'						only result values are returned. 
 #' @param plot.cape (logical) if TRUE CAPE is calculated and displayed
+#' @param plot.LCL	(logical) if TRUE lifting condensation level is calculated and displayed
+#' @param dp Vertical step for calculating parcel ascend. In units Pa. Default is 100. 
+#' @param ... Additional arguments passed to 'plot.skewT.ax'
 #' 
-#' @return NULL at success
+#' @return list containing values for lifting condensation level and CAPE (if requested)
 #' 
 #' @references Rogers&Yau
 #' 

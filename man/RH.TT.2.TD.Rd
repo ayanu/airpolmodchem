@@ -17,6 +17,8 @@ dew point temperature (K)
 \author{Stephan Henne}
 \examples{
 ## 
-print(RH_TT_2_TD(100, 20))
+cat("Relative humidity: 80 \n")
+cat("Temperature: 20°C\n")
+cat("Dewpoint temperature:", RH.TT.2.TD(80, 20), "°C\n")
 }
 \keyword{manip}% at least one, from doc/KEYWORDS

@@ -22,15 +22,22 @@ mixing ratio in g/kg.}
 
 \item{T.surf}{optional surface temperature (degree C) used for LCL and CAPE calculation}
 
+\item{qv.surf}{optional water vapor mixing ratio at the surface (g/kg) used for LCL and CAPE
+calculation.}
+
+\item{plot}{(logical) If TRUE (default) sounding and parcle descent are plotted. Otherwise 
+only result values are returned.}
+
 \item{plot.cape}{(logical) if TRUE CAPE is calculated and displayed}
 
 \item{plot.LCL}{(logical) if TRUE lifting condensation level is calculated and displayed}
 
-\item{pv.surf}{optional water vapor mixing ratio at the surface (g/kg) used for LCL and CAPE
-calculation}
+\item{dp}{Vertical step for calculating parcel ascend. In units Pa. Default is 100.}
+
+\item{...}{Additional arguments passed to 'plot.skewT.ax'}
 }
 \value{
-NULL at success
+list containing values for lifting condensation level and CAPE (if requested)
 }
 \description{
 Draws a Skew-T diagram for a given atmsopheric profile of atmospheric temperature, specific
