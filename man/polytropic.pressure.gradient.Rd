@@ -14,25 +14,22 @@ polytropic.pressure.gradient(z, p0 = 1013.25, T0 = 288.15, gamma = g.0/c.p)
   Altitude increment in units m
 }
   \item{p0}{
-Pressure at bottom of layer 
+Pressure at bottom of layer. 
 }
   \item{T0}{
 Temperature at bottom of layer in K or degree C
 }
   \item{gamma}{
-%%     ~~Describe \code{gamma} here~~
+Gamma is the temperature lapse rate. By default dry adiabatic lapse rate for Earth atmosphere is used.
 }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Pressure at incremented altitude in the same units as 'p0'.
 }
+
 \references{
 %% ~put references to the literature/web site here ~
 }

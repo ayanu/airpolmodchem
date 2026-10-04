@@ -8,7 +8,7 @@
 get.sigma.z = function(x, stability=c("D", "A", "B", "C", "E", "F")){
 	stability = match.arg(stability)
 
-	switch(stability,
+	switch(EXPR=stability,
 			# extremely unstable
 			"A" = {
 				sigma.z = x * 0.20
@@ -41,9 +41,10 @@ get.sigma.z = function(x, stability=c("D", "A", "B", "C", "E", "F")){
 #	horizontal standard deviations depending on distance to source and Pasquill stability class
 #	internal function
 get.sigma.y = function(x, stability=c("D", "A", "B", "C", "E", "F")){
+
 	stability = match.arg(stability)
 
-	a = switch(stability,
+	a = switch(EXPR=stability,
 			"A" = 0.22,
 			"B" = 0.16,
 			"C" = 0.11,

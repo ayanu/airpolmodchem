@@ -19,7 +19,7 @@ Potential temperature (K)
 }
 \author{Stephan Henne}
 \examples{
-print(TT_PP_2_PT(20, 1013.25))
-print(TT_PP_2_PT(20, 800))
+cat("TT=20°C, PP=1013.25 hPa -> PT=,", TT.PP.2.PT(20, 1013.25), "\n")
+cat("TT=20°C, PP=800 hPa -> PT=,", TT.PP.2.PT(20, 800), "\n")
 }
 \keyword{manip}% at least one, from doc/KEYWORDS
