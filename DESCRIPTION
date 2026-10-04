@@ -9,13 +9,14 @@ Depends:
     R (>= 4.1.0)
 Imports:
 	utils,
-	stats,
 	graphics,
-  chron, 
-  stringr
+	grDevices,
+	chron, 
+	kza,
+	stringr
 Description: A collection of useful functions and simple model tools as
     discussed during the ETH lecture Air Pollution Modeling and Chemistry in
     HS2026.
-License: GPL (>=3)
+License: GPL (>=3) + file LICENSE
 Encoding: UTF-8
 Config/roxygen2/version: 8.1.0

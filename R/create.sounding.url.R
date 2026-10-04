@@ -24,14 +24,14 @@
 #' @export 
 create.sounding.url = function(dtm, stnm){
 
-  year = chron.2.string(dtm, "%Y")
+	year = chron.2.string(dtm, "%Y")
 	mon = chron.2.string(dtm, "%m")
 	ddhh = chron.2.string(dtm, "%d%H")
 	yymmdd = chron.2.string(dtm, "%Y-%m-%d")
 	hhmmss = chron.2.string(dtm, "%H:%M:%S")
-
-	url = paste0("https://weather.arcc.uwyo.edu/wsgi/sounding?datetime=", yymmdd, "%20", hhmmss, "&id=", 
-	             stnm, "&type=TEXT:CSV&src=BUFR")
+	
+	url = paste0("https://weather.arcc.uwyo.edu/wsgi/sounding?datetime=", yymmdd, "%20", 
+		hhmmss, "&id=", stnm, "&type=TEXT:CSV&src=BUFR")
 
 	return(url)
 }

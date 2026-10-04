@@ -54,8 +54,8 @@ skewnessTerm = function (P,P_bot){
 	return(skewness * log(P_bot/P))
 }
 
-#' @export
-plot.skewT.ax = function(ax=None, xlim=c(-40,40), ylim=c(105000.,10000.), dp=100, main=""){
+#' @export plot.skewT.ax
+plot.skewT.ax = function(xlim=c(-40,40), ylim=c(105000.,10000.), dp=100, main=""){
 		
 	#	from matplotlib.ticker import FormatStrFormatter,MultipleLocator
 	
@@ -152,6 +152,7 @@ plot.skewT.ax = function(ax=None, xlim=c(-40,40), ylim=c(105000.,10000.), dp=100
 #' @author stephan.henne@@empa.ch
 #' 
 #' @export
+#' @import stats
 skewT.plot = function (snd, T.surf, qv.surf, plot=TRUE, plot.cape=TRUE, plot.LCL=TRUE,
 	dp = 100., ...){
 

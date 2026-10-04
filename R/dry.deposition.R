@@ -122,6 +122,7 @@ r.soil = function(H.star=1E-2, f.0=1, r.soil.O3=150, r.soil.SO2=150){
 #' @references Wesely, M. L., 1989: Parameterization of surface resistances to gaseous dry deposition in regional-scale numerical models. Atmospheric Environment (1967), 23, 1293-1304.
 #' @return dry deposition velocity in m/s
 #' @export 
+#' @import utils
 dry.deposition.velocity = function(u.star, zz, z.0, GR, TT.s, lu=2, season=1, 
 	spec=c("O3", "SO2", "NO2", "NO", "HNO3", "H2O2", "HONO"), H.star, f.0, Dv.by.Dq){
 	
@@ -131,6 +132,7 @@ dry.deposition.velocity = function(u.star, zz, z.0, GR, TT.s, lu=2, season=1,
 	Dv.by.Dq.q = list(SO2=1.9, O3=1.6, NO2=1.6, NO=1.3, HNO3=1.9, H2O2=1.4, HONO=1.6)
 	
 	#	load parameters
+	dry.depo.para = NULL	#	declare variable which is loaded after. Like thie R check does not think that there is no binding for that name
 	data("dry.depo.paras", envir=environment())	
 	
 	#	land use specific parameters

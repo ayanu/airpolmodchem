@@ -17,6 +17,8 @@
 #'
 #' @return Planetary boundary layer height in units provided by 'unit'.
 #' 
+#' @export
+#' @import kza
 bulk.richardson.cbl.height = function(snd, ri.cr=0.25, plot=TRUE, unit=c("ASL", "AGL"), 
 	zlim=c(0,5000), smooth=FALSE){
 	
@@ -29,7 +31,6 @@ bulk.richardson.cbl.height = function(snd, ri.cr=0.25, plot=TRUE, unit=c("ASL", 
 
 	#	5 point gliding average
 	if (smooth){
-		require(kza)
 		snd$pt = kz(snd$pt, 5, 1)
 		snd$sh = kz(snd$sh, 5, 1)
 		snd$uu = kz(snd$uu, 5, 2)

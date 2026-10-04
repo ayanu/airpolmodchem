@@ -2,15 +2,15 @@
 #'
 #' Adds axis in same way as call to 'axis'. Ticks and labels will be pretty date/time.
 #' 
-#' @param side 
-#' @param x 
-#' @param at
-#' @param format
-#' @param labels 
-#' @param tz
-#' @param lwd
-#' @param lwd.ticks
-#' @param ...
+#' @param side an integer specifying which side of the plot the axis is to be drawn on.  The axis is placed as follows: 1=below, 2=left, 3=above and 4=right.
+#' @param x Alternative values of where axis ticks should be drawn.
+#' @param at the points at which tick-marks are to be drawn.  Non-finite (infinite, ‘NaN’ or ‘NA’) values are omitted.  By default (when ‘NULL’) tickmark locations are computed, see ‘Details’ below.
+#' @param format A format string for the conversion of chron to string. See '?strptime' for details.
+#' @param labels this can either be a logical value specifying whether (numerical) annotations are to be made at the tickmarks, or a character or expression vector of labels to be placed at the tick points.  (Other objects are coerced by ‘as.graphicsAnnot’.)  If this is not logical, ‘at’ should also be supplied and of the same length.  If ‘labels’ is of length zero after coercion, it has the same effect as supplying ‘TRUE’.
+#' @param tz time zone of chron object. Default is "GMT".
+#' @param lwd line width of axis line
+#' @param lwd.ticks line width of tick marks
+#' @param ... other parameters passed to 'axis'
 #' 
 #' @return location on tick marks
 #'
@@ -18,11 +18,10 @@
 #' @import chron
 #' @import graphics
 axis.chron <- function (side, x, at, format, labels, tz= "GMT", 
-	lwd=graphics::par("lwd"), lwd.ticks=graphcis::par("lwd"), ...) {
-    require(chron)
+	lwd=par("lwd"), lwd.ticks=par("lwd"), ...) {
 
     mat <- missing(at)
-    range = graphics::par("usr")[if (side%%2) 
+    range = par("usr")[if (side%%2) 
         1:2
     else 3:4]
 
@@ -63,6 +62,7 @@ axis.chron <- function (side, x, at, format, labels, tz= "GMT",
     else {
         sc <- 60 * 60 * 24
     }
+
     # < 50 days
     if (d < 60 * 60 * 24 * 150) {
         zz <- pretty((z*86400)/sc) * sc / 86400

@@ -207,7 +207,7 @@ init.KPP = function(init.var=NULL, var.default=0, dt, tt=270, init.gl = NULL){
 
 	return(vals)
 }
-#' @export 
+#' @export update.deposition
 update.deposition = function(spec, conc, vd=NULL, dt=1, dz=100){
 	nn.spec = length(spec)
 
@@ -228,7 +228,7 @@ update.deposition = function(spec, conc, vd=NULL, dt=1, dz=100){
 #	mu (list) molar mass by name, units: g/mole
 #	dt	(numeric) time step, units: s
 #	V	(numeric)	volume of box, units: m3
-#' @export 
+#' @export update.emissions
 update.emissions = function(spec, E=NULL, mu=NULL, dt=1, V=1, dtm=chron(0), hour.profile=NULL){
 	nn.spec = length(spec)
 
@@ -254,7 +254,7 @@ update.emissions = function(spec, E=NULL, mu=NULL, dt=1, V=1, dtm=chron(0), hour
 #' @param conc concentrations passed to kpp
 #' @param dconc concentration increment to be added to conc before passing to kpp
 #' 
-#' @export 
+#' @export update.KPP.concentrations
 update.KPP.concentrations = function(conc, dconc){
 	nn.spec = length(conc)
 	

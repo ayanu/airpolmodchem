@@ -17,13 +17,13 @@
 #' @author stephan.henne@@empa.ch
 #' 
 #' @export 
+#' @import stringr
 get.sounding = function(url){
-  require(stringr)
   
   # helper function to test if 'url' is a web address or file
   is.valid.url <- function(string) {
     pattern <- "(https?|ftp)://[^ /$.?#].[^\\s]*" 
-    stringr::str_detect(string, pattern)
+    str_detect(string, pattern)
   }  
 
   if (is.valid.url(url)){  
@@ -51,9 +51,9 @@ get.sounding = function(url){
   names(dat)[grepl("pressure", names(dat))]   = "PRES"
   attr(dat$PRES, "units") = "hPa"
   names(dat)[names(dat)=="temperature_C"]     = "TEMP"
-  attr(dat$TEMP, "units") = "°C"
+  attr(dat$TEMP, "units") = "degree C"
   names(dat)[names(dat)=="mixing.ratio_g.kg"] = "MIXR"  
-  attr(dat$MIXR, "units") = "°g kg-1"
+  attr(dat$MIXR, "units") = "g kg-1"
   
   return(dat)
 }

@@ -1,7 +1,7 @@
 #' @export 
+#' @import chron
 "global.radiation" <-
 function(dtm=0, lon=0, lat=0){
-    library(chron)
 
     sinphi = sin(solar.elevation.angle(dtm, lon, lat))
     
