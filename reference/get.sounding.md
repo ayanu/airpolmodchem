@@ -1,20 +1,21 @@
 # Reads radiosonde data
 
-The sounding data needs to be in the ASCII format as obtained from
+The sounding data needs to be in the csv format as obtained from
 University of Wyoming radiosonde archive. Only one sounding per file is
-supported.
+supported. Check: https://weather.arcc.uwyo.edu/upperair/sounding.shtml
+Select 'Output type': Comma Separated Values
 
 ## Usage
 
 ``` r
-get.sounding(fn)
+get.sounding(url)
 ```
 
 ## Arguments
 
-- fn:
+- url:
 
-  (character) Either the filename or the URL of the sounding ASCII file.
+  (character) Either the filename or the URL of the sounding csv file.
 
 ## Value
 

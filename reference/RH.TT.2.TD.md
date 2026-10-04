@@ -31,6 +31,10 @@ Stephan Henne
 
 ``` r
 ## 
-print(RH_TT_2_TD(100, 20))
-#> Error in RH_TT_2_TD(100, 20): could not find function "RH_TT_2_TD"
+cat("Relative humidity: 80 \n")
+#> Relative humidity: 80 
+cat("Temperature: 20°C\n")
+#> Temperature: 20°C
+cat("Dewpoint temperature:", RH.TT.2.TD(80, 20), "°C\n")
+#> Dewpoint temperature: 289.5924 °C
 ```

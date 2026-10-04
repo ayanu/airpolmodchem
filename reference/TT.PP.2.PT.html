@@ -66,10 +66,10 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu">TT_PP_2_PT</span><span class="op">(</span><span class="fl">20</span>, <span class="fl">1013.25</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in TT_PP_2_PT(20, 1013.25):</span> could not find function "TT_PP_2_PT"</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu">TT_PP_2_PT</span><span class="op">(</span><span class="fl">20</span>, <span class="fl">800</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in TT_PP_2_PT(20, 800):</span> could not find function "TT_PP_2_PT"</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"TT=20°C, PP=1013.25 hPa -&gt; PT=,"</span>, <span class="fu">TT.PP.2.PT</span><span class="op">(</span><span class="fl">20</span>, <span class="fl">1013.25</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TT=20°C, PP=1013.25 hPa -&gt; PT=, 292.0501 </span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"TT=20°C, PP=800 hPa -&gt; PT=,"</span>, <span class="fu">TT.PP.2.PT</span><span class="op">(</span><span class="fl">20</span>, <span class="fl">800</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TT=20°C, PP=800 hPa -&gt; PT=, 312.4386 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

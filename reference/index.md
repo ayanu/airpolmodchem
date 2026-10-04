@@ -29,6 +29,10 @@
   from ambient and dew point temperature
 - [`average.gauss.plume.from.freq()`](average.gauss.plume.from.freq.md)
   : Gauss plume statistics
+- [`axis.chron()`](axis.chron.md) : Add axis with date/time labels for
+  chron dimension
+- [`bulk.richardson.cbl.height()`](bulk.richardson.cbl.height.md) :
+  Calculate planetary boundary layer height
 - [`chron.2.string()`](chron.2.string.md) : Formats a chron object to
   character
 - [`R.star`](constants.md) [`R.air`](constants.md)
@@ -56,7 +60,6 @@
   mixing ratios.
 - [`nc.2.vmr()`](nc.2.vmr.md) : Convert number concentrations to volume
   mixing ratios.
-- [`plot(`*`<skew.T>`*`)`](plot.skew.T.md) : Draw a Skew-T diagram
 - [`polytropic.pressure.gradient()`](polytropic.pressure.gradient.md) :
   Pressure decrease for layer with constant pressure gradient
 - [`skewT.plot()`](skewT.plot.md) : Draw a Skew-T diagram

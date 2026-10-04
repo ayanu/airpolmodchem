@@ -33,6 +33,16 @@ skewT.plot(
   optional surface temperature (degree C) used for LCL and CAPE
   calculation
 
+- qv.surf:
+
+  optional water vapor mixing ratio at the surface (g/kg) used for LCL
+  and CAPE calculation.
+
+- plot:
+
+  (logical) If TRUE (default) sounding and parcle descent are plotted.
+  Otherwise only result values are returned.
+
 - plot.cape:
 
   (logical) if TRUE CAPE is calculated and displayed
@@ -42,14 +52,19 @@ skewT.plot(
   (logical) if TRUE lifting condensation level is calculated and
   displayed
 
-- pv.surf:
+- dp:
 
-  optional water vapor mixing ratio at the surface (g/kg) used for LCL
-  and CAPE calculation
+  Vertical step for calculating parcel ascend. In units Pa. Default is
+  100.
+
+- ...:
+
+  Additional arguments passed to 'plot.skewT.ax'
 
 ## Value
 
-NULL at success
+list containing values for lifting condensation level and CAPE (if
+requested)
 
 ## References
 

@@ -35,8 +35,8 @@ Stephan Henne
 ## Examples
 
 ``` r
-print(TT_PP_2_PT(20, 1013.25))
-#> Error in TT_PP_2_PT(20, 1013.25): could not find function "TT_PP_2_PT"
-print(TT_PP_2_PT(20, 800))
-#> Error in TT_PP_2_PT(20, 800): could not find function "TT_PP_2_PT"
+cat("TT=20°C, PP=1013.25 hPa -> PT=,", TT.PP.2.PT(20, 1013.25), "\n")
+#> TT=20°C, PP=1013.25 hPa -> PT=, 292.0501 
+cat("TT=20°C, PP=800 hPa -> PT=,", TT.PP.2.PT(20, 800), "\n")
+#> TT=20°C, PP=800 hPa -> PT=, 312.4386 
 ```

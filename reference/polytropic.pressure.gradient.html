@@ -48,13 +48,13 @@
 <dd><p>Altitude increment in units m</p></dd>
 
   <dt id="arg-p-">p0<a class="anchor" aria-label="anchor" href="#arg-p-"></a></dt>
-<dd><p>Pressure at bottom of layer</p></dd>
+<dd><p>Pressure at bottom of layer.</p></dd>
 
   <dt id="arg-t-">T0<a class="anchor" aria-label="anchor" href="#arg-t-"></a></dt>
 <dd><p>Temperature at bottom of layer in K or degree C</p></dd>
 
   <dt id="arg-gamma">gamma<a class="anchor" aria-label="anchor" href="#arg-gamma"></a></dt>
-<dd><p><!-- %%     ~~Describe \code{gamma} here~~ --></p></dd>
+<dd><p>Gamma is the temperature lapse rate. By default dry adiabatic lapse rate for Earth atmosphere is used.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -63,11 +63,7 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><!-- %%  ~Describe the value returned -->
-<!-- %%  If it is a LIST, use -->
-<!-- %%  \item{comp1 }{Description of 'comp1'} -->
-<!-- %%  \item{comp2 }{Description of 'comp2'} -->
-<!-- %% ... --></p>
+    <p>Pressure at incremented altitude in the same units as 'p0'.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -105,7 +101,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>     p = p0 * ((T0 - gamma * z)/T0)^(g.0/R.air/gamma)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     return(p)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x560b856a43d8&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55f7dd7e13e8&gt;</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

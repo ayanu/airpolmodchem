@@ -17,7 +17,7 @@ polytropic.pressure.gradient(z, p0 = 1013.25, T0 = 288.15, gamma = g.0/c.p)
 
 - p0:
 
-  Pressure at bottom of layer
+  Pressure at bottom of layer.
 
 - T0:
 
@@ -25,9 +25,14 @@ polytropic.pressure.gradient(z, p0 = 1013.25, T0 = 288.15, gamma = g.0/c.p)
 
 - gamma:
 
+  Gamma is the temperature lapse rate. By default dry adiabatic lapse
+  rate for Earth atmosphere is used.
+
 ## Details
 
 ## Value
+
+Pressure at incremented altitude in the same units as 'p0'.
 
 ## References
 
@@ -57,5 +62,5 @@ function (z, p0 = 1013.25, T0 = 288.15, gamma = g.0/c.p)
 #>     p = p0 * ((T0 - gamma * z)/T0)^(g.0/R.air/gamma)
 #>     return(p)
 #> }
-#> <environment: 0x560b856a43d8>
+#> <environment: 0x55f7dd7e13e8>
 ```

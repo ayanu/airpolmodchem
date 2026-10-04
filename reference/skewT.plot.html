@@ -70,6 +70,16 @@ mixing ratio in g/kg.</p></dd>
 <dd><p>optional surface temperature (degree C) used for LCL and CAPE calculation</p></dd>
 
 
+<dt id="arg-qv-surf">qv.surf<a class="anchor" aria-label="anchor" href="#arg-qv-surf"></a></dt>
+<dd><p>optional water vapor mixing ratio at the surface (g/kg) used for LCL and CAPE
+calculation.</p></dd>
+
+
+<dt id="arg-plot">plot<a class="anchor" aria-label="anchor" href="#arg-plot"></a></dt>
+<dd><p>(logical) If TRUE (default) sounding and parcle descent are plotted. Otherwise
+only result values are returned.</p></dd>
+
+
 <dt id="arg-plot-cape">plot.cape<a class="anchor" aria-label="anchor" href="#arg-plot-cape"></a></dt>
 <dd><p>(logical) if TRUE CAPE is calculated and displayed</p></dd>
 
@@ -78,14 +88,17 @@ mixing ratio in g/kg.</p></dd>
 <dd><p>(logical) if TRUE lifting condensation level is calculated and displayed</p></dd>
 
 
-<dt id="arg-pv-surf">pv.surf<a class="anchor" aria-label="anchor" href="#arg-pv-surf"></a></dt>
-<dd><p>optional water vapor mixing ratio at the surface (g/kg) used for LCL and CAPE
-calculation</p></dd>
+<dt id="arg-dp">dp<a class="anchor" aria-label="anchor" href="#arg-dp"></a></dt>
+<dd><p>Vertical step for calculating parcel ascend. In units Pa. Default is 100.</p></dd>
+
+
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>Additional arguments passed to 'plot.skewT.ax'</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>NULL at success</p>
+    <p>list containing values for lifting condensation level and CAPE (if requested)</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

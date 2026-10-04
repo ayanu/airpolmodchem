@@ -19,6 +19,8 @@
 <url><loc>/reference/TT.TD.2.RH.html</loc></url>
 <url><loc>/reference/TT.TD.2.TV.html</loc></url>
 <url><loc>/reference/average.gauss.plume.from.freq.html</loc></url>
+<url><loc>/reference/axis.chron.html</loc></url>
+<url><loc>/reference/bulk.richardson.cbl.height.html</loc></url>
 <url><loc>/reference/chron.2.string.html</loc></url>
 <url><loc>/reference/constants.html</loc></url>
 <url><loc>/reference/create.sounding.url.html</loc></url>
@@ -33,7 +35,6 @@
 <url><loc>/reference/isothermal.pressure.gradient.html</loc></url>
 <url><loc>/reference/mc.2.vmr.html</loc></url>
 <url><loc>/reference/nc.2.vmr.html</loc></url>
-<url><loc>/reference/plot.skew.T.html</loc></url>
 <url><loc>/reference/polytropic.pressure.gradient.html</loc></url>
 <url><loc>/reference/skewT.plot.html</loc></url>
 <url><loc>/reference/update.KPP.concentrations.html</loc></url>
