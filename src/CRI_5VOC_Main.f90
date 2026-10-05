@@ -134,7 +134,7 @@ SUBROUTINE R_Initialize(initval, R_dt, R_tt)
     ATOL(ii) = 1.0d-3
   end do
 
-  do ii=1,NSPEC
+  do ii=1,NVAR
     C(ii) = initval(ii)
   end do 
 

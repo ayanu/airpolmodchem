@@ -1585,44 +1585,52 @@ END SUBROUTINE KppSolveTR
                                  
       WDOT = 0.0D0 
       IF (N .LE. 0) RETURN 
-      IF (incX .EQ. incY) IF (incX-1) 5,20,60 
+!      IF (incX .EQ. incY) IF (incX-1) 5,20,60 
+
+      IF (incX .NE. incY .OR. (incX-1) .LT. 0) THEN
 !                                                                       
 !     Code for unequal or nonpositive increments.                       
 !                                                                       
-    5 IX = 1 
-      IY = 1 
-      IF (incX .LT. 0) IX = (-N+1)*incX + 1 
-      IF (incY .LT. 0) IY = (-N+1)*incY + 1 
-      DO i = 1,N 
-        WDOT = WDOT + DX(IX)*DY(IY) 
-        IX = IX + incX 
-        IY = IY + incY 
-      END DO 
-      RETURN 
+        IX = 1 
+        IY = 1 
+        IF (incX .LT. 0) IX = (-N+1)*incX + 1 
+        IF (incY .LT. 0) IY = (-N+1)*incY + 1 
+        DO i = 1,N 
+          WDOT = WDOT + DX(IX)*DY(IY) 
+          IX = IX + incX 
+          IY = IY + incY 
+        END DO 
+        RETURN 
+
+      ELSE IF ( (incX-1) .EQ. 0) THEN
 !                                                                       
 !     Code for both increments equal to 1.                              
 !                                                                       
 !     Clean-up loop so remaining vector length is a multiple of 5.      
 !                                                                       
-   20 M = MOD(N,5) 
-      IF (M .EQ. 0) GO TO 40 
-      DO i = 1,M 
-         WDOT = WDOT + DX(i)*DY(i) 
-      END DO 
-      IF (N .LT. 5) RETURN 
-   40 MP1 = M + 1 
-      DO i = MP1,N,5 
-          WDOT = WDOT + DX(i)*DY(i) + DX(i+1)*DY(i+1) + DX(i+2)*DY(i+2) +  &
+        M = MOD(N,5) 
+        IF (M .EQ. 0) GO TO 40 
+        DO i = 1,M 
+           WDOT = WDOT + DX(i)*DY(i) 
+        END DO 
+        IF (N .LT. 5) RETURN 
+   40   MP1 = M + 1 
+        DO i = MP1,N,5 
+            WDOT = WDOT + DX(i)*DY(i) + DX(i+1)*DY(i+1) + DX(i+2)*DY(i+2) +  &
                    DX(i+3)*DY(i+3) + DX(i+4)*DY(i+4)                   
-      END DO 
-      RETURN 
+        END DO 
+        RETURN 
+
+      ELSE 
+
 !                                                                       
 !     Code for equal, positive, non-unit increments.                    
 !                                                                       
-   60 NS = N*incX 
-      DO i = 1,NS,incX 
-        WDOT = WDOT + DX(i)*DY(i) 
-      END DO 
+        NS = N*incX 
+        DO i = 1,NS,incX 
+          WDOT = WDOT + DX(i)*DY(i) 
+        END DO 
+      END IF
 
       END FUNCTION WDOT                                          
 
