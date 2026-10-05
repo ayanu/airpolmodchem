@@ -3,7 +3,6 @@
 # Author: hes
 ###############################################################################
 
-#' @export
 dewpt = function(r,p){
 #		"""Returns dewpoint temperature (Celcius) for given mixing ratio (kg/kg)
 #		and pressure (hectopascal)"""
@@ -14,7 +13,6 @@ dewpt = function(r,p){
 	return(243.5/(17.67/(log((r*p/(r+eps))/6.112))-1))
 }
 
-#' @export
 gamma_s = function(T,p){
 #		"""Calculates moist adiabatic lapse rate for T (Celsius) and p (Pa)
 #		Note: We calculate dT/dp, not dT/dz
@@ -54,7 +52,6 @@ skewnessTerm = function (P,P_bot){
 	return(skewness * log(P_bot/P))
 }
 
-#' @export plot.skewT.ax
 plot.skewT.ax = function(xlim=c(-40,40), ylim=c(105000.,10000.), dp=100, main=""){
 		
 	#	from matplotlib.ticker import FormatStrFormatter,MultipleLocator

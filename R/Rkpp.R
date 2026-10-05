@@ -1,6 +1,14 @@
-#	dtm 	(chron)		single time 
-#	lat		(numeric)	latitude in degrees north
-#	lon		(numeric) 	longitude in degrees east
+#' Calculate photolysis rates
+#' 
+#' Applies the MCM/CRI parameterisation of photolysis rates based on location and time only. 
+#' A total of 61 photolyiss rates are calculated. Refer to MCM/CRI for details.
+#' 
+#' @param dtm (chron) single date/time
+#' @param lat (numeric)	latitude in degrees north
+#' @param lon (numeric)	longitude in degrees east
+#' 
+#' @return vector of photolysis rates using the MCM photolysis reaction definitions.
+#'
 #' @export 
 get.MCM.photolysis.rates = function(dtm, lon=0, lat=0) {
 
@@ -101,6 +109,11 @@ get.MCM.photolysis.rates = function(dtm, lon=0, lat=0) {
 	
 	return(J)
 }
+
+#' Interface to KPP
+#' 
+#' Obtain list of treated compounds in KPP
+#' 
 #' @export 
 get.KPP.species = function(){
 	
@@ -115,6 +128,11 @@ get.KPP.species = function(){
 
 	return(spec.names)
 }
+
+#' Interface to KPP
+#' 
+#' Obtain list of global variables in KPP
+#' 
 #' @export 
 get.KPP.globals = function(){
 	tmp = .Fortran("R_GetNumGlobals", R_nusrgl=integer(1), R_nusrnames=integer(1))
@@ -135,6 +153,12 @@ get.KPP.globals = function(){
 
 	return(data.frame(name=global.names, length=global.length, start=start, stringsAsFactors=FALSE))
 }
+
+#' Set KPP global variables 
+#' 
+#' @param vals.gl named list of global values passed to KPP
+#' @param tt temperature; treated separately from other global variables
+#' 
 #' @export 
 set.KPP.globals = function(vals.gl, tt){
 	globals = get.KPP.globals()
@@ -162,13 +186,16 @@ set.KPP.globals = function(vals.gl, tt){
 	}
 }
 
-
-#	init.var	(list) initial values of all species
-#	var.default (numeric) inital value for species not in init.var
-#	dt			(numeric)	time step in seconds
-#	tt 			(numeric) 	temperature in K
-#
-#	init.gl		(list) initial values of user defined globals
+#' Initialise KPP 
+#' 
+#' Initial values for chemical compounds, time step, temperature and other global variables.
+#' 
+#' @param init.var	 (list) initial values of all species
+#' @param var.default (numeric) inital value for species not in init.var
+#' @param dt			(numeric)	time step in seconds
+#' @param tt 			(numeric) 	temperature in K
+#' @param init.gl		(list) initial values of user defined globals
+#' 
 #' @export 
 init.KPP = function(init.var=NULL, var.default=0, dt, tt=270, init.gl = NULL){
 
@@ -207,6 +234,17 @@ init.KPP = function(init.var=NULL, var.default=0, dt, tt=270, init.gl = NULL){
 
 	return(vals)
 }
+
+#' Calculate tendency due to deposition
+#' 
+#' @param spec vector of species to be treated
+#' @param conc vector of concentrations from which to calculated the tendencies
+#' @param vd vector of dry deposition velocities (units m s-1)
+#' @param dt time step in seconds
+#' @param dz Vertical height of surface layer in  meters. Default is 100. 
+#' 
+#' @return Concentration tendency due to dry deposition
+#' 
 #' @export update.deposition
 update.deposition = function(spec, conc, vd=NULL, dt=1, dz=100){
 	nn.spec = length(spec)
@@ -224,10 +262,18 @@ update.deposition = function(spec, conc, vd=NULL, dt=1, dz=100){
 	return(dconc)
 }
 
-#	E (list) emissions by name, units: kg/s
-#	mu (list) molar mass by name, units: g/mole
-#	dt	(numeric) time step, units: s
-#	V	(numeric)	volume of box, units: m3
+#' Calculate tendency due to emissions 
+#'
+#' @param spec vector of species to be treated
+#' @param E (list) emissions by name, units: kg/s
+#' @param mu (list) molar mass by name, units: g/mole
+#' @param dt	(numeric) time step, units: s
+#' @param V	(numeric)	volume of box, units: m3
+#' @param dtm date/time (chron)
+#' @param hour.profile time of day profile of emission scaling factors
+#'
+#' @return Concentration tendency due to dry deposition
+#' 
 #' @export update.emissions
 update.emissions = function(spec, E=NULL, mu=NULL, dt=1, V=1, dtm=chron(0), hour.profile=NULL){
 	nn.spec = length(spec)
@@ -249,6 +295,7 @@ update.emissions = function(spec, E=NULL, mu=NULL, dt=1, V=1, dtm=chron(0), hour
 
 	return(dconc)
 }
+
 #' Submit all concentrations to KPP
 #' 
 #' @param conc concentrations passed to kpp

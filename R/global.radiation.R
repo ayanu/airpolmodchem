@@ -1,3 +1,13 @@
+#' Calculate clear sky global radiation at time and location 
+#' 
+#' Using simplified equation based on soloar elevation angle as given in Stull 1982 
+#' 
+#' @param dtm date/time as chron object
+#' @param lon longitude in degree east 
+#' @param lat latitude in degree north
+#' 
+#' @return global radidation in units W m-2
+#' 
 #' @export 
 #' @import chron
 "global.radiation" <-

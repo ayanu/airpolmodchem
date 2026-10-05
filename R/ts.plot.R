@@ -1,3 +1,38 @@
+#' Simple time-series plot 
+#' 
+#' Plots one or more variables of the passed data.frame against time. 
+#' 
+#' @param X data.frame containing time-series data
+#' @param para parameter(s)/column(s) to plot
+#' @param xlim 2-element vector giving the limits of the x-axis. If missing determined from X.
+#' @param ylim 2-element vector giving the limits of the y-axis. Default NULL: determine
+#'				from data.
+#' @param xlab Label for the x-axis. Missing by default: Using time range as axis label. 
+#' @param ylab Label for y-axis. Default is to use 'para'.
+#' @param pch symbol index to be used for the plot; if missing set automatically 
+#' @param lty line type to be used for the plot; if missing set automatically 
+#' @param col color to be used for the plot; if missing set automatically
+#' @param leg.pos Legend position. Passed to call to 'legend'. Default: 'topleft'
+#' @param stacked Default (0) is to plot different parameters/columns in same plot with 
+#'				single y-axis. But giving a positive number to stacked, multiple parameters
+#'				will be plotted on top of each other in separate panels. The number determines
+#'				how many parameters are plotted per sub-plot.
+#' @param accumulated If TRUE the sum of all parameters is formed and stacked surfaces are 
+#'				plotted instead of lines/symbols. Requires all variables to either be 
+#'				positive or negative. 
+#' @param legend Alternative legend text.
+#' @param dtm.col Name of column in 'X' that contains the time variable. Default 'dtm'.
+#' @param flag Name of column that contains flagging data. Differently flagged data points 
+#' 				will be plotted with different symbols/colors.
+#' @param bg.flag Value of special flag for background data. 
+#' @param col.par Additional secondary parameter that can be used for coloring time series.
+#' @param color.palette Color palette function used for coloring time series.
+#' @param scale Additional scaling factor for all time series data. Default is NULL: no 
+#'				scaling. 
+#' @param ... Additional argument passed to other routines. 
+#' 
+#' @return NULL
+#' 
 #' @export 
 #' @import grDevices
 ts.plot = function(X, para=names(X)[2], xlim, ylim=NULL, xlab, ylab=para, 
@@ -241,4 +276,5 @@ ts.plot = function(X, para=names(X)[2], xlim, ylim=NULL, xlab, ylab=para,
         }
     }
 
+	return(invisible(NULL))
 }

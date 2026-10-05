@@ -12,6 +12,8 @@
 \alias{PP.0}
 \alias{F.0}
 \alias{g.0}
+\alias{c.p}
+\alias{c.v}
 
 \title{Physical constants}
 
@@ -31,12 +33,14 @@ T.0
 PP.0
 F.0
 g.0
+c.p
+c.v
 }
 
 \details{
 \tabular{lll}{
 Symbol	\tab Description \tab Units \cr
-R.star		\tab Universal gas constant \tab  J/K/mol \cr
+R.star	\tab Universal gas constant \tab  J/K/mol \cr
 R.air 	\tab Specific gas constant for dry air \tab J/kg/K \cr
 R.h2o	\tab Specific gas constant for water vapor \tab J/kg/K \cr
 k.b		\tab Boltzmann constant \tab J/K \cr
@@ -47,6 +51,8 @@ T.0		\tab Freezing point of water 	\tab K	\cr
 PP.0	\tab Standard ambient sea level pressure \tab hPa \cr
 F.0		\tab Solar constant 	\tab W/m2 \cr
 g.0		\tab Average gravity of Earth 	\tab m/s2 \cr
+c.p     \tab Specific heat capacity at constant pressure \tab J kg-1 K-1 \cr
+c.v     \tab Specific heat capacity at constant volume   \tab J kg-1 K-1 \cr
 }
 }
 
