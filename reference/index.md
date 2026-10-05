@@ -27,6 +27,10 @@
   ambient and dew point temperature
 - [`TT.TD.PP.2.TV()`](TT.TD.2.TV.md) : calculate virtual temperature
   from ambient and dew point temperature
+- [`UU_VV_2_WS_WD()`](UU_VV_2_WS_WD.md) : Convert horizontal wind vector
+  components to wind spped and direction
+- [`WS_WD_2_UU_VV()`](WS_WD_2_UU_VV.md) : Convert horizontal wind speed
+  and direction into vector components
 - [`average.gauss.plume.from.freq()`](average.gauss.plume.from.freq.md)
   : Gauss plume statistics
 - [`axis.chron()`](axis.chron.md) : Add axis with date/time labels for
@@ -39,15 +43,24 @@
   [`R.h2o`](constants.md) [`k.b`](constants.md) [`N.A`](constants.md)
   [`mu.air`](constants.md) [`mu.h2o`](constants.md)
   [`T.0`](constants.md) [`PP.0`](constants.md) [`F.0`](constants.md)
-  [`g.0`](constants.md) : Physical constants
+  [`g.0`](constants.md) [`c.p`](constants.md) [`c.v`](constants.md) :
+  Physical constants
 - [`create.sounding.url()`](create.sounding.url.md) : Creates a URL to
   retrieve radiosonde data
+- [`dry.depo.para`](dry.depo.para.md) : Dry deposition parameters
 - [`dry.deposition.velocity()`](dry.deposition.velocity.md) : Calculate
   dry depostion volocity
 - [`gauss.plume.2D()`](gauss.plume.2D.md) : Gauss plume calculation
   (directional)
 - [`gauss.plume()`](gauss.plume.md) : Gauss plume calculation
+- [`get.KPP.globals()`](get.KPP.globals.md) : Interface to KPP
+- [`get.KPP.species()`](get.KPP.species.md) : Interface to KPP
+- [`get.MCM.photolysis.rates()`](get.MCM.photolysis.rates.md) :
+  Calculate photolysis rates
 - [`get.sounding()`](get.sounding.md) : Reads radiosonde data
+- [`global.radiation()`](global.radiation.md) : Calculate clear sky
+  global radiation at time and location
+- [`init.KPP()`](init.KPP.md) : Initialise KPP
 - [`isa.pp.2.zz()`](isa.pp.2.zz.md) : Pressure to altitude for
   international standard atmosphere
 - [`isa.zz.2.pp()`](isa.zz.2.pp.md) : Altitude to pressure for
@@ -62,9 +75,24 @@
   mixing ratios.
 - [`polytropic.pressure.gradient()`](polytropic.pressure.gradient.md) :
   Pressure decrease for layer with constant pressure gradient
+- [`reh.freq`](reh.freq.md) : Frequency of dispersion category
+- [`reh.ts`](reh.ts.md) : Time series of observed meteorology and
+  stability category
+- [`set.KPP.globals()`](set.KPP.globals.md) : Set KPP global variables
 - [`skewT.plot()`](skewT.plot.md) : Draw a Skew-T diagram
+- [`solar.azimuth.angle()`](solar.azimuth.angle.md) : Calculate solar
+  azimth angle
+- [`solar.elevation.angle()`](solar.elevation.angle.md) : Calculate
+  solar elevation angle
+- [`solar.zenith.angle()`](solar.zenith.angle.md) : Calculate solar
+  zenith angle
+- [`ts.plot()`](ts.plot.md) : Simple time-series plot
 - [`update(`*`<KPP.concentrations>`*`)`](update.KPP.concentrations.md) :
   Submit all concentrations to KPP
+- [`update(`*`<deposition>`*`)`](update.deposition.md) : Calculate
+  tendency due to deposition
+- [`update(`*`<emissions>`*`)`](update.emissions.md) : Calculate
+  tendency due to emissions
 - [`vmr.2.mc()`](vmr.2.mc.md) : Convert volume mixing ratios to mass
   concentrations.
 - [`vmr.2.nc()`](vmr.2.nc.md) : Convert volume mixing ratios to number
