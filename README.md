@@ -1,3 +1,7 @@
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/ayanu/airpolmodchem/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ayanu/airpolmodchem/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 # Overview
 
 The R package AirPolModChem provides a collection of useful functions and simple toy models as discussed during the ETH Zürich lecture Air Pollution Modeling and Chemistry in HS2026.
