@@ -488,11 +488,11 @@ CONTAINS !  SUBROUTINES internal to Rosenbrock
 ! ~~~~ Local variables
    REAL(kind=dp) :: Ynew(N), Fcn0(N), Fcn(N)
    REAL(kind=dp) :: K(N*ros_S), dFdT(N)
-#ifdef FULL_ALGEBRA    
-   REAL(kind=dp) :: Jac0(N,N), Ghimj(N,N)
-#else
+
+
+
    REAL(kind=dp) :: Jac0(LU_NONZERO), Ghimj(LU_NONZERO)
-#endif
+
    REAL(kind=dp) :: H, Hnew, HC, HG, Fac, Tau
    REAL(kind=dp) :: Err, Yerr(N)
    INTEGER :: Pivot(N), Direction, ioffset, j, istage
@@ -730,19 +730,19 @@ Stage: DO istage = 1, ros_S
    IMPLICIT NONE
 
 !~~~> Input arguments
-#ifdef FULL_ALGEBRA    
-   REAL(kind=dp), INTENT(IN) ::  Jac0(N,N)
-#else
+
+
+
    REAL(kind=dp), INTENT(IN) ::  Jac0(LU_NONZERO)
-#endif   
+
    REAL(kind=dp), INTENT(IN) ::  gam
    INTEGER, INTENT(IN) ::  Direction
 !~~~> Output arguments
-#ifdef FULL_ALGEBRA    
-   REAL(kind=dp), INTENT(OUT) :: Ghimj(N,N)
-#else
+
+
+
    REAL(kind=dp), INTENT(OUT) :: Ghimj(LU_NONZERO)
-#endif   
+
    LOGICAL, INTENT(OUT) ::  Singular
    INTEGER, INTENT(OUT) ::  Pivot(N)
 !~~~> Inout arguments
@@ -758,15 +758,7 @@ Stage: DO istage = 1, ros_S
    DO WHILE (Singular)
 
 !~~~>    Construct Ghimj = 1/(H*gam) - Jac0
-#ifdef FULL_ALGEBRA    
-     !slim: CALL WCOPY(N*N,Jac0,1,Ghimj,1)
-     !slim: CALL WSCAL(N*N,(-ONE),Ghimj,1)
-     Ghimj = -Jac0
-     ghinv = ONE/(Direction*H*gam)
-     DO i=1,N
-       Ghimj(i,i) = Ghimj(i,i)+ghinv
-     END DO
-#else
+# 770 "CRI_5VOC_Integrator.F90"
      !slim: CALL WCOPY(LU_NONZERO,Jac0,1,Ghimj,1)
      !slim: CALL WSCAL(LU_NONZERO,(-ONE),Ghimj,1)
      Ghimj(1:LU_NONZERO) = -Jac0(1:LU_NONZERO)
@@ -774,7 +766,7 @@ Stage: DO istage = 1, ros_S
      DO i=1,N
        Ghimj(LU_DIAG(i)) = Ghimj(LU_DIAG(i))+ghinv
      END DO
-#endif   
+
 !~~~>    Compute LU decomposition
      CALL ros_Decomp( Ghimj, Pivot, ISING )
      IF (ISING == 0) THEN
@@ -805,20 +797,20 @@ Stage: DO istage = 1, ros_S
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    IMPLICIT NONE
 !~~~> Inout variables
-#ifdef FULL_ALGEBRA    
-   REAL(kind=dp), INTENT(INOUT) :: A(N,N)
-#else   
+
+
+
    REAL(kind=dp), INTENT(INOUT) :: A(LU_NONZERO)
-#endif
+
 !~~~> Output variables
    INTEGER, INTENT(OUT) :: Pivot(N), ISING
 
-#ifdef FULL_ALGEBRA    
-   CALL  DGETRF( N, N, A, N, Pivot, ISING )
-#else   
+
+
+
    CALL KppDecomp ( A, ISING )
    Pivot(1) = 1
-#endif
+
    ISTATUS(Ndec) = ISTATUS(Ndec) + 1
 
   END SUBROUTINE ros_Decomp
@@ -831,24 +823,24 @@ Stage: DO istage = 1, ros_S
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    IMPLICIT NONE
 !~~~> Input variables
-#ifdef FULL_ALGEBRA    
-   REAL(kind=dp), INTENT(IN) :: A(N,N)
-   INTEGER :: ISING
-#else   
+
+
+
+
    REAL(kind=dp), INTENT(IN) :: A(LU_NONZERO)
-#endif
+
    INTEGER, INTENT(IN) :: Pivot(N)
 !~~~> InOut variables
    REAL(kind=dp), INTENT(INOUT) :: b(N)
 
-#ifdef FULL_ALGEBRA    
-   CALL  DGETRS( 'N', N , 1, A, N, Pivot, b, N, ISING )
-   IF ( Info < 0 ) THEN
-      PRINT*,"Error in DGETRS. ISING=",ISING
-   END IF  
-#else   
+
+
+
+
+
+
    CALL KppSolve( A, b )
-#endif
+
 
    ISTATUS(Nsol) = ISTATUS(Nsol) + 1
 
@@ -1322,34 +1314,24 @@ SUBROUTINE JacTemplate( T, Y, Jcb )
 !~~~> Input variables
     REAL(kind=dp) :: T, Y(NVAR)
 !~~~> Output variables
-#ifdef FULL_ALGEBRA    
-    REAL(kind=dp) :: JV(LU_NONZERO), Jcb(NVAR,NVAR)
-#else
+
+
+
     REAL(kind=dp) :: Jcb(LU_NONZERO)
-#endif   
+
 !~~~> Local variables
     REAL(kind=dp) :: Told
-#ifdef FULL_ALGEBRA    
-    INTEGER :: i, j
-#endif   
+
+
+
 
     Told = TIME
     TIME = T
     CALL Update_SUN()
     CALL Update_RCONST()
-#ifdef FULL_ALGEBRA    
-    CALL Jac_SP(Y, FIX, RCONST, JV)
-    DO j=1,NVAR
-      DO i=1,NVAR
-         Jcb(i,j) = 0.0_dp
-      END DO
-    END DO
-    DO i=1,LU_NONZERO
-       Jcb(LU_IROW(i),LU_ICOL(i)) = JV(i)
-    END DO
-#else
+# 1351 "CRI_5VOC_Integrator.F90"
     CALL Jac_SP( Y, FIX, RCONST, Jcb )
-#endif   
+
     TIME = Told
 
 END SUBROUTINE JacTemplate

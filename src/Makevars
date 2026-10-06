@@ -4,7 +4,7 @@
 #	2) Make sure file is included as make target as R will only treat f90 files for automake
 #   3) Include object name in PKG_LIBS. Otherwise R does not include such objects in shared library
 #
-PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_FFLAGS) CRI_5VOC_Integrator.o
+PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_FFLAGS)
 PKG_FFLAGS = $(SHLIB_OPENMP_FFLAGS)
 #
 
@@ -37,7 +37,7 @@ LAOBJ  = CRI_5VOC_LinearAlgebra.o
 STOCHSRC = CRI_5VOC_Stochastic.f90 
 STOCHOBJ = CRI_5VOC_Stochastic.o 
 
-MAINSRC = CRI_5VOC_Main.f90   CRI_5VOC_Initialize.f90   CRI_5VOC_Integrator.F90 CRI_5VOC_Model.f90
+MAINSRC = CRI_5VOC_Main.f90   CRI_5VOC_Initialize.f90   CRI_5VOC_Integrator.f90 CRI_5VOC_Model.f90
 MAINOBJ = CRI_5VOC_Main.o     CRI_5VOC_Initialize.o     CRI_5VOC_Integrator.o   CRI_5VOC_Model.o 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -115,7 +115,7 @@ CRI_5VOC_Main.o: CRI_5VOC_Main.f90  $(ALLOBJ) CRI_5VOC_Initialize.o CRI_5VOC_Mod
 CRI_5VOC_Model.o: CRI_5VOC_Model.f90  $(ALLOBJ) CRI_5VOC_Integrator.o
 	$(FC) $(PKG_FFLAGS) $(CPPFLAGS) $(FPICFLAGS) $(FFLAGS) -c $< -o $@
 	
-CRI_5VOC_Integrator.o: CRI_5VOC_Integrator.F90  $(ALLOBJ)
+CRI_5VOC_Integrator.o: CRI_5VOC_Integrator.f90  $(ALLOBJ)
 	$(FC) $(PKG_FFLAGS) $(CPPFLAGS) $(FPICFLAGS) $(FFLAGS) -c $< -o $@
 	
 mcm_constants.o: mcm_constants.f90  $(GENOBJ) 
