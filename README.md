@@ -1,12 +1,14 @@
+# AirPolModChem
+
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/ayanu/airpolmodchem/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ayanu/airpolmodchem/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-# Overview
+ ## Overview
 
 The R package AirPolModChem provides a collection of useful functions and simple toy models as discussed during the ETH Zürich lecture Air Pollution Modeling and Chemistry in HS2026.
 
-# Installation 
+## Installation 
 
 Direct installation from github can be done after installing R packages `devtools` or `remotes`:
 
@@ -21,11 +23,11 @@ library(remotes)
 install_github("ayanu/airpolmodchem")
 ```
 
-# Usage 
+## Usage 
 
 The package contains several functions that are used for exercises in the lecture. 
 For details refer to the function [reference](https://ayanu.github.io/airpolmodchem/reference/index.html).
 
-# Getting help 
+## Getting help 
 
 Please refer to the package [documentation](https://ayanu.github.io/airpolmodchem) first. If that does not solve your questions, contact the developer directly.
