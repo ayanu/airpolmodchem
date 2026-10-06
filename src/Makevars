@@ -1,12 +1,5 @@
-#	Ugly tweak to force preprocessing of fortran code
-#
-#	1) rename code files from f90 to F90. gfortran then will run preprocessing without additional flag
-#	2) Make sure file is included as make target as R will only treat f90 files for automake
-#   3) Include object name in PKG_LIBS. Otherwise R does not include such objects in shared library
-#
 PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_FFLAGS)
 PKG_FFLAGS = $(SHLIB_OPENMP_FFLAGS)
-#
 
 GENSRC = CRI_5VOC_Precision.f90  \
 	 CRI_5VOC_Parameters.f90     \
